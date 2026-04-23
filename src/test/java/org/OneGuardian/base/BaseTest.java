@@ -34,6 +34,9 @@ public class BaseTest {
         if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
             options.addArguments("--headless=new");
             log.info("Running in HEADLESS mode");
+        }else {
+            options.addArguments("--start-maximized");
+            log.info("Running in UI mode ✅");
         }
 
         driver = new ChromeDriver(options);
