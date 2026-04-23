@@ -31,7 +31,7 @@ jobs:
       # Step 4 — Run tests via Maven
       # -Dheadless=true runs Chrome without UI (required on Linux servers)
       - name: Run Selenium Tests
-        run: mvn test -Dsurefire.failIfNoSpecifiedTests=false
+        run: mvn test -Dheadless=true -Dsurefire.failIfNoSpecifiedTests=false
         continue-on-error: true  # Don't stop workflow if tests fail
         # We still want Slack notification sent
 
