@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- suite = the entire test run -->
+<suite name="BellaVita Test Suite" verbose="1" parallel="methods" thread-count="3">
+
+    <listeners>
+        <listener class-name="org.OneGuardian.utils.TestListener"/>
+        <listener class-name="org.OneGuardian.utils.RetryListener"/>
+    </listeners>
+
+    <!-- test = a group of test classes -->
+    <test name="Smoke Tests">
+        <classes>
+            <!-- Each class tag points to one test class -->
+            <class name="org.OneGuardian.tests.HomePageTest"/>
+            <class name="org.OneGuardian.tests.SearchTest"/>
+        </classes>
+    </test>
+
+</suite>

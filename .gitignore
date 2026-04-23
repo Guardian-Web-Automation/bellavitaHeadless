@@ -1,0 +1,17 @@
+# Maven build output
+target/
+
+# IntelliJ project files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Test output files (generated on every run — no need to push)
+reports/
+screenshots/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
