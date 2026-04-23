@@ -58,7 +58,7 @@ jobs:
       - name: Send Slack Notification
         if: always()  # Always send — pass or fail
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL02 }}
         run: |
           # Determine test status emoji and color
           if [ "${{ job.status }}" == "success" ]; then
@@ -125,7 +125,7 @@ jobs:
                     \"elements\": [
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"BellaVita Luxury | Selenium + TestNG + ExtentReports\"
+                        \"text\": \"BellaVita Luxury Headless | Selenium + TestNG + ExtentReports\"
                       }
                     ]
                   }
