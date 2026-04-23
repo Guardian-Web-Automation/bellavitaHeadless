@@ -1,0 +1,135 @@
+name: BellaVita Automation Suite
+
+on:
+  # Runs every day at 10:00 AM IST (04:30 UTC = 10:00 AM IST)
+  schedule:
+    - cron: '30 4 * * *'
+
+  # Also allows manual trigger from GitHub UI anytime
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 — Checkout your code from repo
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2 — Setup Java 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # Step 3 — Setup Chrome browser on the runner
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      # Step 4 — Run tests via Maven
+      # -Dheadless=true runs Chrome without UI (required on Linux servers)
+      - name: Run Selenium Tests
+        run: mvn test -Dsurefire.failIfNoSpecifiedTests=false
+        continue-on-error: true  # Don't stop workflow if tests fail
+        # We still want Slack notification sent
+
+      # Step 5 — Upload ExtentReport as GitHub artifact
+      # This lets you download the HTML report from GitHub Actions UI
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        if: always()  # Upload even if tests fail
+        with:
+          name: ExtentReport-${{ github.run_number }}
+          path: reports/TestReport.html
+          retention-days: 30  # Keep report for 30 days
+
+      # Step 6 — Upload screenshots if any failures
+      - name: Upload Screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Screenshots-${{ github.run_number }}
+          path: screenshots/
+          retention-days: 30
+
+      # Step 7 — Send Slack notification with results
+      - name: Send Slack Notification
+        if: always()  # Always send — pass or fail
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          # Determine test status emoji and color
+          if [ "${{ job.status }}" == "success" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="PASSED"
+            COLOR="#36a64f"
+          else
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="FAILED"
+            COLOR="#ff0000"
+          fi
+
+          # Build report URL — links to the artifact in GitHub Actions
+          REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          # Send message to Slack
+          curl -X POST $SLACK_WEBHOOK_URL \
+          -H 'Content-type: application/json' \
+          --data "{
+            \"attachments\": [
+              {
+                \"color\": \"$COLOR\",
+                \"blocks\": [
+                  {
+                    \"type\": \"header\",
+                    \"text\": {
+                      \"type\": \"plain_text\",
+                      \"text\": \"$STATUS_EMOJI BellaVita Automation Report\"
+                    }
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"fields\": [
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*Status:*\n$STATUS_EMOJI $STATUS_TEXT\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*Run Number:*\n#${{ github.run_number }}\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*Branch:*\n${{ github.ref_name }}\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*Triggered By:*\nScheduled (10 AM IST)\"
+                      }
+                    ]
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
+                      \"text\": \"*📊 View Full Report & Screenshots:*\n<$REPORT_URL|Click here to open GitHub Actions Run>\"
+                    }
+                  },
+                  {
+                    \"type\": \"divider\"
+                  },
+                  {
+                    \"type\": \"context\",
+                    \"elements\": [
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"BellaVita Luxury | Selenium + TestNG + ExtentReports\"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }"
