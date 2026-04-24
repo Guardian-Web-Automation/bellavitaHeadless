@@ -53,6 +53,8 @@ public class ProductDetailPage {
 
     public ProductDetailPage(WebDriver driver) {
         this.driver = driver;
+        int timeout = Boolean.parseBoolean(
+                System.getProperty("headless", "false")) ? 20 : 10;
         // Wait up to 10 seconds for elements — ATC button can be slow to load
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);

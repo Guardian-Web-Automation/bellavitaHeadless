@@ -30,6 +30,7 @@ public class BaseTest {
 
         if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
             options.addArguments("--headless=new");
+            options.addArguments("--window-size=1920,1080");
             log.info("Running in HEADLESS mode ✅");
         } else {
             options.addArguments("--start-maximized");
