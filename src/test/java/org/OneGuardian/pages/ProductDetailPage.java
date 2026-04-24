@@ -1,5 +1,6 @@
 package org.OneGuardian.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -70,14 +71,38 @@ public class ProductDetailPage {
         // Explicit wait — ensures button is clickable before clicking
         // ATC button can be disabled briefly while page loads variants
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
-        addToCartButton.click();
+        scrollToElementAndPerformClick(addToCartButton);
     }
-    public void clickAddToCartAtProductCard() {
+    private void scrollToElementAndPerformClick(WebElement element) {
+        try {
+            // Wait for element to be visible
+            wait.until(ExpectedConditions.visibilityOf(element));
+
+            // Wait for element to be clickable
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+
+            // Scroll to element using JavaScript (scrollIntoView with true = top aligned)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+
+            // Small delay to ensure element is fully in view and rendered
+            Thread.sleep(300);
+            // Click the element
+            element.click();
+
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread interrupted while scrolling and clicking element", e);
+        }
+    }
+
+            public void clickAddToCartAtProductCard() {
         // Explicit wait — ensures button is clickable before clicking
         // ATC button can be disabled briefly while page loads variants
         wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonAtProductCard));
         addToCartButtonAtProductCard.click();
     }
+
 
     public boolean isCartNotificationVisible() {
         try {
