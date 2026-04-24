@@ -7,11 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
 public class ProductDetailPage {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductDetailPage.class);
     WebDriver driver;
     WebDriverWait wait;
 
@@ -70,11 +73,13 @@ public class ProductDetailPage {
     public void clickAddToCart() {
         // Explicit wait — ensures button is clickable before clicking
         // ATC button can be disabled briefly while page loads variants
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
         scrollToElementAndPerformClick(addToCartButton);
     }
+
     private void scrollToElementAndPerformClick(WebElement element) {
         try {
+            log.info("Scrolling to element and clicking - Element located by: {}",
+                     element.toString().contains("xpath") ? "XPath" : "CSS Selector");
             // Wait for element to be visible
             wait.until(ExpectedConditions.visibilityOf(element));
 

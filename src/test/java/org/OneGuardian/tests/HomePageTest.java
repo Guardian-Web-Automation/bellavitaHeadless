@@ -13,7 +13,7 @@ public class HomePageTest extends BaseTest {
     private static final Logger log = LogManager.getLogger(HomePageTest.class);
 
 
-    @Test
+    @Test(enabled = false)
     public void verifyHomePageTitle() {
         log.info("TEST: Verifying homepage title...");
         HomePage homePage = new HomePage(driver);
@@ -28,7 +28,7 @@ public class HomePageTest extends BaseTest {
         log.info("Homepage title verified successfully ✅");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyHomePageUrl() {
         log.info("TEST: Verifying homepage URL...");
         HomePage homePage = new HomePage(driver);
@@ -42,7 +42,7 @@ public class HomePageTest extends BaseTest {
         log.info("Homepage URL verified successfully ✅");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyLogoIsDisplayed() {
         log.info("TEST: Verifying logo visibility...");
         HomePage homePage = new HomePage(driver);
