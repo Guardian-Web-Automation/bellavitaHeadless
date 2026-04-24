@@ -32,6 +32,10 @@ public class ProductDetailPage {
     // Add to Cart button on product page
     @FindBy(xpath = "(//button[contains(@class,'bg-black') and contains(text(),'ADD TO CART')])[1]")
     private WebElement addToCartButton;
+    // Sticky footer ATC button — visible in headless/mobile view
+// Has unique class 'pdp-sticky-add-shimmer' to distinguish it
+    @FindBy(css = "button.pdp-sticky-add-shimmer")
+    private WebElement stickyFooterATCButton;
 
     @FindBy(xpath = "(//button[@class='product-card-add-btn'])[1]")
     private WebElement addToCartButtonAtProductCard;
@@ -71,49 +75,52 @@ public class ProductDetailPage {
         wait.until(ExpectedConditions.visibilityOf(productTitleOfProductCard));
         return productTitleOfProductCard.getText();
     }
+
     public void clickAddToCart() {
-        // Scroll the element into view first — critical for headless mode
-        // In headless, viewport is small so elements below fold are "invisible"
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView(true);", addToCartButton);
 
-        // Small pause after scroll to let page settle
-        try { Thread.sleep(500); } catch (InterruptedException e) { }
+        // Check if running in headless mode
+        boolean isHeadless = Boolean.parseBoolean(
+                System.getProperty("headless", "false"));
 
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
-        addToCartButton.click();
-    }
-
-//    public void clickAddToCart() {
-//        // Explicit wait — ensures button is clickable before clicking
-//        // ATC button can be disabled briefly while page loads variants
-//        scrollToElementAndPerformClick(addToCartButton);
-//    }
-
-    private void scrollToElementAndPerformClick(WebElement element) {
-        try {
-            log.info("Scrolling to element and clicking - Element located by: {}",
-                     element.toString().contains("xpath") ? "XPath" : "CSS Selector");
-            // Wait for element to be visible
-            wait.until(ExpectedConditions.visibilityOf(element));
-
-            // Wait for element to be clickable
-            wait.until(ExpectedConditions.elementToBeClickable(element));
-
-            // Scroll to element using JavaScript (scrollIntoView with true = top aligned)
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView(true);", element);
-
-            // Small delay to ensure element is fully in view and rendered
-            Thread.sleep(300);
-            // Click the element
-            element.click();
-
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Thread interrupted while scrolling and clicking element", e);
+        if (isHeadless) {
+            // In headless mode — page renders like mobile
+            // Sticky footer ATC is visible, main ATC is off screen
+            log.info("Headless mode — using sticky footer ATC button");
+            clickElement(stickyFooterATCButton);
+        } else {
+            // In UI mode — main ATC near product image is visible
+            log.info("UI mode — using main ATC button");
+            clickElement(addToCartButton);
         }
     }
+
+    // Reusable private method — scroll + wait + click with JS fallback
+    private void clickElement(WebElement element) {
+        try {
+            // Scroll into view first
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView(true);", element);
+
+            Thread.sleep(500);
+
+            // Try normal click
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            log.info("Clicked using normal click ✅");
+
+        } catch (Exception e) {
+            // JS click fallback
+            log.warn("Normal click failed — using JS click: " + e.getMessage());
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].click();", element);
+            log.info("Clicked using JS click ✅");
+        }
+    }
+
+
+
+
+
 
             public void clickAddToCartAtProductCard() {
         // Explicit wait — ensures button is clickable before clicking
