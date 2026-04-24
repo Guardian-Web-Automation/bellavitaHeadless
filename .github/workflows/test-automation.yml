@@ -58,7 +58,7 @@ jobs:
       - name: Send Slack Notification
         if: always()
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.QA_AUTOMATION_SLACK_CHANNEL }}
         run: |
           # ─── Parse testng-results.xml for test stats ───
           RESULT_FILE="target/surefire-reports/testng-results.xml"
@@ -140,26 +140,31 @@ jobs:
                     }
                   },
                   {
-                    \"type\": \"section\",
-                    \"fields\": [
-                      {
-                        \"type\": \"mrkdwn\",
-                        \"text\": \"*🔢 Total Tests:*\n$TOTAL\"
-                      },
-                      {
-                        \"type\": \"mrkdwn\",
-                        \"text\": \"*✅ Passed:*\n$PASSED\"
-                      },
-                      {
-                        \"type\": \"mrkdwn\",
-                        \"text\": \"*❌ Failed:*\n$FAILED\"
-                      },
-                      {
-                        \"type\": \"mrkdwn\",
-                        \"text\": \"*⚠️ Skipped:*\n$SKIPPED\"
-                      }
-                    ]
-                  },
+              \"type\": \"section\",
+              \"fields\": [
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*🔢 Total Tests:*\n$TOTAL\"
+                },
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*✅ Passed:*\n$PASSED\"
+                }
+              ]
+            },
+            {
+              \"type\": \"section\",
+              \"fields\": [
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*❌ Failed:*\n$FAILED\"
+                },
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*⚠️ Skipped:*\n$SKIPPED\"
+                }
+              ]
+            },
                   {
                     \"type\": \"divider\"
                   },
