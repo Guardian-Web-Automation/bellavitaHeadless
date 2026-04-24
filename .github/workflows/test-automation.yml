@@ -58,7 +58,7 @@ jobs:
       - name: Send Slack Notification
         if: always()
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL02 }}
         run: |
           # ─── Parse testng-results.xml for test stats ───
           RESULT_FILE="target/surefire-reports/testng-results.xml"
