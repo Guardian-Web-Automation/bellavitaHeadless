@@ -69,12 +69,24 @@ public class ProductDetailPage {
         wait.until(ExpectedConditions.visibilityOf(productTitleOfProductCard));
         return productTitleOfProductCard.getText();
     }
-
     public void clickAddToCart() {
-        // Explicit wait — ensures button is clickable before clicking
-        // ATC button can be disabled briefly while page loads variants
-        scrollToElementAndPerformClick(addToCartButton);
+        // Scroll the element into view first — critical for headless mode
+        // In headless, viewport is small so elements below fold are "invisible"
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView(true);", addToCartButton);
+
+        // Small pause after scroll to let page settle
+        try { Thread.sleep(500); } catch (InterruptedException e) { }
+
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        addToCartButton.click();
     }
+
+//    public void clickAddToCart() {
+//        // Explicit wait — ensures button is clickable before clicking
+//        // ATC button can be disabled briefly while page loads variants
+//        scrollToElementAndPerformClick(addToCartButton);
+//    }
 
     private void scrollToElementAndPerformClick(WebElement element) {
         try {
