@@ -28,7 +28,7 @@ public class SearchTest extends BaseTest {
 
     // dataProvider = "searchData" → TestNG calls this 3 times (once per Excel row)
     // Each call injects the next row's values as (keyword, expected)
-    @Test(dataProvider = "searchData",enabled = false)
+    @Test(dataProvider = "searchData",enabled = true)
     public void verifySearchFunctionality(String keyword, String expected) {
         log.info("TEST: Searching for keyword → " + keyword);
 
@@ -86,7 +86,7 @@ public class SearchTest extends BaseTest {
         log.info("Add to Cart verified successfully ✅ | Product: " + productName);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyAddToCartDirectlyFromSearchPage() {
         log.info("TEST: Verifying Add to Cart from search result...");
 
