@@ -16,21 +16,21 @@
 
     <dependencies>
 
-        <!-- ✅ Selenium Java - Core browser automation -->
+        <!-- Selenium Java - Core browser automation -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.21.0</version>
+            <version>4.25.0</version>
         </dependency>
 
-        <!-- ✅ WebDriverManager - Auto manages ChromeDriver binary, no manual download needed -->
+        <!-- WebDriverManager - Auto manages ChromeDriver binary -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.8.0</version>
         </dependency>
 
-        <!-- ✅ TestNG - Test framework (annotations, assertions, suite management) -->
+        <!-- TestNG - Test framework -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -38,52 +38,46 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- ✅ ExtentReports - Rich HTML test reports -->
+        <!-- ExtentReports - Rich HTML test reports -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.2</version>
         </dependency>
 
-        <!-- ✅ Log4j2 API - Logging interface -->
+        <!-- Log4j2 API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.23.1</version>
         </dependency>
 
-        <!-- ✅ Log4j2 Core - Logging implementation -->
+        <!-- Log4j2 Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.23.1</version>
         </dependency>
 
-        <!-- ✅ Apache POI - Read Excel files for Data Provider -->
+        <!-- Apache POI - Read Excel files -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.3.0</version>
         </dependency>
 
-        <!-- Apache Commons IO - FileUtils for copying screenshot files -->
+        <!-- Commons IO - FileUtils for screenshots -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.16.1</version>
         </dependency>
-        <!-- Silences SLF4J warning from WebDriverManager -->
+
+        <!-- SLF4J - Silences WebDriverManager warning -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.13</version>
-        </dependency>
-
-        <!-- ✅ Selenium DevTools v125 - Fixes CDP warning for Chrome 147+ -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v125</artifactId>
-            <version>4.21.0</version>
         </dependency>
 
     </dependencies>

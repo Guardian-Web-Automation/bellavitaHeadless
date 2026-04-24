@@ -54,13 +54,32 @@ jobs:
           path: screenshots/
           retention-days: 30
 
-      # Step 7 — Send Slack notification with results
+      # Step 7 — Send Slack Notification with Test Results
       - name: Send Slack Notification
-        if: always()  # Always send — pass or fail
+        if: always()
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL02 }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          # Determine test status emoji and color
+          # ─── Parse testng-results.xml for test stats ───
+          RESULT_FILE="target/surefire-reports/testng-results.xml"
+          
+          if [ -f "$RESULT_FILE" ]; then
+            # Extract numbers from XML attributes
+            TOTAL=$(grep -o 'total="[0-9]*"' $RESULT_FILE | grep -o '[0-9]*' | head -1)
+            PASSED=$(grep -o 'passed="[0-9]*"' $RESULT_FILE | grep -o '[0-9]*' | head -1)
+            FAILED=$(grep -o 'failed="[0-9]*"' $RESULT_FILE | grep -o '[0-9]*' | head -1)
+            SKIPPED=$(grep -o 'skipped="[0-9]*"' $RESULT_FILE | grep -o '[0-9]*' | head -1)
+            IGNORED=$(grep -o 'ignored="[0-9]*"' $RESULT_FILE | grep -o '[0-9]*' | head -1)
+          else
+            # Fallback if file not found
+            TOTAL="N/A"
+            PASSED="N/A"
+            FAILED="N/A"
+            SKIPPED="N/A"
+            IGNORED="0"
+          fi
+          
+          # ─── Status color and emoji based on job result ───
           if [ "${{ job.status }}" == "success" ]; then
             STATUS_EMOJI="✅"
             STATUS_TEXT="PASSED"
@@ -70,11 +89,11 @@ jobs:
             STATUS_TEXT="FAILED"
             COLOR="#ff0000"
           fi
-
-          # Build report URL — links to the artifact in GitHub Actions
+          
+          # ─── Report URL ───
           REPORT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-
-          # Send message to Slack
+          
+          # ─── Send to Slack ───
           curl -X POST $SLACK_WEBHOOK_URL \
           -H 'Content-type: application/json' \
           --data "{
@@ -111,21 +130,52 @@ jobs:
                     ]
                   },
                   {
+                    \"type\": \"divider\"
+                  },
+                  {
                     \"type\": \"section\",
                     \"text\": {
                       \"type\": \"mrkdwn\",
-                      \"text\": \"*📊 View Full Report & Screenshots:*\n<$REPORT_URL|Click here to open GitHub Actions Run>\"
+                      \"text\": \"*📊 Test Results Summary*\"
                     }
                   },
                   {
+                    \"type\": \"section\",
+                    \"fields\": [
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*🔢 Total Tests:*\n$TOTAL\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*✅ Passed:*\n$PASSED\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*❌ Failed:*\n$FAILED\"
+                      },
+                      {
+                        \"type\": \"mrkdwn\",
+                        \"text\": \"*⚠️ Skipped:*\n$SKIPPED\"
+                      }
+                    ]
+                  },
+                  {
                     \"type\": \"divider\"
+                  },
+                  {
+                    \"type\": \"section\",
+                    \"text\": {
+                      \"type\": \"mrkdwn\",
+                      \"text\": \"*📄 View Full Report & Screenshots:*\n<$REPORT_URL|Click here to open GitHub Actions Run>\"
+                    }
                   },
                   {
                     \"type\": \"context\",
                     \"elements\": [
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"BellaVita Luxury Headless | Selenium + TestNG + ExtentReports\"
+                        \"text\": \"BellaVita Luxury | Selenium + TestNG + ExtentReports\"
                       }
                     ]
                   }

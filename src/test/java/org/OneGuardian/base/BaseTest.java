@@ -22,24 +22,26 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-gpu");
-        options.addArguments("--no-sandbox");           // Required for Linux CI
-        options.addArguments("--disable-dev-shm-usage"); // Required for Linux CI
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--window-size=1920,1080");
 
-        // Read system property — if running on CI, enable headless
-        // Locally: runs with UI
-        // GitHub Actions: runs headless (no browser window)
         if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
             options.addArguments("--headless=new");
-            log.info("Running in HEADLESS mode");
-        }else {
+            log.info("Running in HEADLESS mode ✅");
+        } else {
             options.addArguments("--start-maximized");
             log.info("Running in UI mode ✅");
         }
 
+        // ✅ Suppresses CDP version mismatch warning
+        java.util.logging.Logger.getLogger("org.openqa.selenium")
+                .setLevel(java.util.logging.Level.SEVERE);
+
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
         driver.manage().timeouts()
                 .implicitlyWait(java.time.Duration.ofSeconds(10));
 
