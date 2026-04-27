@@ -1,5 +1,6 @@
 package org.OneGuardian.tests;
 
+import org.OneGuardian.base.BasePage;
 import org.OneGuardian.base.BaseTest;
 import org.OneGuardian.pages.HomePage;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomePageTitle() {
         log.info("TEST: Verifying homepage title...");
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         String actualTitle = homePage.getPageTitle();
         String expectedTitle = "Bella Vita Luxury | Buy Best Perfumes Online";
@@ -32,7 +33,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomePageUrl() {
         log.info("TEST: Verifying homepage URL...");
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         String actualUrl = homePage.getCurrentUrl();
 
@@ -46,7 +47,7 @@ public class HomePageTest extends BaseTest {
     public void verifyLogoIsDisplayed() {
         log.info("TEST: Verifying logo visibility...");
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         Assert.assertTrue(homePage.isLogoDisplayed(),
                 "Logo is not visible on the homepage!");

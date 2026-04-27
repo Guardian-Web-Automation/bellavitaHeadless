@@ -120,7 +120,6 @@ public class CartTest extends BaseTest {
 
 
         CartPage cartPage = new CartPage(driver);
-//        cartPage.clickCartIcon();
 
         // Get quantity before clicking +
         int quantityBefore = Integer.parseInt(cartPage.getQuantity());
@@ -182,10 +181,8 @@ public class CartTest extends BaseTest {
         homePage.clickATCByProductName("WHITE OUD");
 
         CartPage cartPage = new CartPage(driver);
-//        cartPage.clickCartIcon();
 
         cartPage.clickRemoveItem();
-//        cartPage.clickCartIcon();
 
         // After removing — cart should be empty
         Assert.assertTrue(cartPage.isCartEmpty(),
@@ -207,7 +204,6 @@ public class CartTest extends BaseTest {
         homePage.clickATCByProductName("WHITE OUD");
 
         CartPage cartPage = new CartPage(driver);
-//        cartPage.clickCartIcon();
 
         String totalPrice = cartPage.getCartTotalPrice();
         log.info("Cart total price: " + totalPrice);

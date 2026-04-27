@@ -1,22 +1,13 @@
 package org.OneGuardian.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.OneGuardian.base.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+public class CartPage extends BasePage {
 
-import java.time.Duration;
-
-public class CartPage {
-
-    WebDriver driver;
-    WebDriverWait wait;
-    private static final Logger log = LogManager.getLogger(CartPage.class);
 
     // =====================
     // Locators
@@ -75,11 +66,7 @@ public class CartPage {
     private WebElement cartCloseButton;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
-        int timeout = Boolean.parseBoolean(
-                System.getProperty("headless", "false")) ? 20 : 10;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     // =====================
@@ -99,8 +86,8 @@ public class CartPage {
 
     public boolean isCartPageDisplayed() {
         try {
-            wait.until(ExpectedConditions.visibilityOf(cartTitle));
-            return cartTitle.isDisplayed();
+            isElementDisplayed(cartTitle);
+            return true;
         } catch (Exception e) {
             return false;
         }
@@ -108,7 +95,7 @@ public class CartPage {
 
     public String getCartItemName() {
         try{
-            wait.until(ExpectedConditions.visibilityOf(FirstcartItemName));
+            waitForVisibility(FirstcartItemName);
             return FirstcartItemName.getText();
         }catch (Exception e){
             return "";
@@ -134,29 +121,31 @@ public class CartPage {
     }
 
     public void clickIncreaseQuantity() {
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView(true);", increaseQtyButton);
-        wait.until(ExpectedConditions.elementToBeClickable(increaseQtyButton));
-        increaseQtyButton.click();
+        scrollAndClick(increaseQtyButton);
         log.info("Clicked increase quantity button");
-        // Wait for quantity to update
-        try { Thread.sleep(1000); } catch (InterruptedException e) { }
+//        ((JavascriptExecutor) driver).executeScript(
+//                "arguments[0].scrollIntoView(true);", increaseQtyButton);
+//        wait.until(ExpectedConditions.elementToBeClickable(increaseQtyButton));
+//        increaseQtyButton.click();
+//        log.info("Clicked increase quantity button");
+//        // Wait for quantity to update
+//        try { Thread.sleep(1000); } catch (InterruptedException e) { }
     }
 
     public void clickDecreaseQuantity() {
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView(true);", decreaseQtyButton);
-        wait.until(ExpectedConditions.elementToBeClickable(decreaseQtyButton));
-        decreaseQtyButton.click();
+        scrollAndClick(decreaseQtyButton);
         log.info("Clicked decrease quantity button");
-        try { Thread.sleep(1000); } catch (InterruptedException e) { }
+//        ((JavascriptExecutor) driver).executeScript(
+//                "arguments[0].scrollIntoView(true);", decreaseQtyButton);
+//        wait.until(ExpectedConditions.elementToBeClickable(decreaseQtyButton));
+//        decreaseQtyButton.click();
+//        log.info("Clicked decrease quantity button");
+//        try { Thread.sleep(1000); } catch (InterruptedException e) { }
     }
 
     public void clickRemoveItem() {
-        wait.until(ExpectedConditions.elementToBeClickable(removeItemButton));
-        removeItemButton.click();
+       safeClick(removeItemButton);
         log.info("Clicked remove item button");
-        try { Thread.sleep(1500); } catch (InterruptedException e) { }
     }
 
     public boolean isCartEmpty() {
@@ -170,9 +159,8 @@ public class CartPage {
 
     public String getCartTotalPrice() {
        try{
-           ((JavascriptExecutor) driver).executeScript(
-                   "arguments[0].scrollIntoView(true);", cartTotalPrice);
-           wait.until(ExpectedConditions.visibilityOf(cartTotalPrice));
+           scrollToElement(cartTotalPrice);
+           waitForVisibility(cartTotalPrice);
            return cartTotalPrice.getText().trim();
        }catch (Exception e) {
            return "";
@@ -187,8 +175,7 @@ public class CartPage {
 
     public void closeCart() {
         try{
-            wait.until(ExpectedConditions.elementToBeClickable(cartCloseButton));
-            cartCloseButton.click();
+            safeClick(cartCloseButton);
         } catch (Exception e) {
             // If close button isn't found or clickable, ignore — test can continue
         }

@@ -1,22 +1,15 @@
 package org.OneGuardian.pages;
 
+import org.OneGuardian.base.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
+public class ProductDetailPage extends BasePage {
 
-public class ProductDetailPage {
-
-    public static final Logger log = LoggerFactory.getLogger(ProductDetailPage.class);
-    WebDriver driver;
-    WebDriverWait wait;
 
     // =====================
     // Locators
@@ -56,11 +49,7 @@ public class ProductDetailPage {
     private WebElement cartCountBubble;
 
     public ProductDetailPage(WebDriver driver) {
-        this.driver = driver;
-        int timeout = Boolean.parseBoolean(
-                System.getProperty("headless", "false")) ? 20 : 10;
-        // Wait up to 10 seconds for elements — ATC button can be slow to load
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -118,15 +107,8 @@ public class ProductDetailPage {
     }
 
 
-
-
-
-
-            public void clickAddToCartAtProductCard() {
-        // Explicit wait — ensures button is clickable before clicking
-        // ATC button can be disabled briefly while page loads variants
-        wait.until(ExpectedConditions.elementToBeClickable(addToCartButtonAtProductCard));
-        addToCartButtonAtProductCard.click();
+    public void clickAddToCartAtProductCard() {
+        safeClick(addToCartButtonAtProductCard);
     }
 
 
@@ -156,8 +138,7 @@ public class ProductDetailPage {
 
     public void closeCart() {
         try{
-            wait.until(ExpectedConditions.elementToBeClickable(cartCloseButton));
-            cartCloseButton.click();
+            safeClick(cartCloseButton);
         } catch (Exception e) {
             // If close button isn't found or clickable, ignore — test can continue
         }

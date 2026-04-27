@@ -1,25 +1,14 @@
 package org.OneGuardian.pages;
 
-import org.OneGuardian.tests.CartTest;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.OneGuardian.base.BasePage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.List;
 
-public class HomePage {
-
-    static WebDriver driver;
-    private WebDriverWait wait;
-    private static final Logger log = LogManager.getLogger(HomePage.class);
-
+public class HomePage extends BasePage {
 
     // ==============================
     // @FindBy = PageFactory locator
@@ -65,30 +54,16 @@ public class HomePage {
     // Constructor — PageFactory.initElements wires up all @FindBy fields
     // Must be called with the driver so Selenium knows which browser to look in
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     // ==============================
     // Page Actions — what a user can DO on this page
     // ==============================
 
-    public static void navigateTo() {
-        driver.get("https://www.bellavitaluxury.co.in/");
-        log.info("Navigated to homepage");
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
-
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
-    }
 
     public void clickSearchIcon() {
-        searchIcon.click();
+        safeClick(searchIcon);
     }
 
     public void enterSearchText(String text) {
@@ -114,15 +89,13 @@ public class HomePage {
     }
 
     public void clickFirstSearchResult() {
-        wait.until(ExpectedConditions.elementToBeClickable(firstProductLink));
-        firstProductLink.click();
+        safeClick(firstProductLink);
     }
 
     // ─────────────────────────────────────────
     public void navigateToBestsellers() {
         try{
-            wait.until(ExpectedConditions.elementToBeClickable(bestsellerLink));
-            bestsellerLink.click();
+            safeClick(bestsellerLink);
             // Wait for products to load
             wait.until(ExpectedConditions.visibilityOfAllElements(productTitles));
             log.info("Navigated to Bestsellers section");

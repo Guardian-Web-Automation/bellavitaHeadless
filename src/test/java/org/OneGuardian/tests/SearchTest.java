@@ -1,5 +1,6 @@
 package org.OneGuardian.tests;
 
+import org.OneGuardian.base.BasePage;
 import org.OneGuardian.base.BaseTest;
 import org.OneGuardian.pages.HomePage;
 import org.OneGuardian.pages.ProductDetailPage;
@@ -33,7 +34,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Searching for keyword → " + keyword);
 
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         homePage.clickSearchIcon();
         homePage.enterSearchText(keyword);
@@ -54,7 +55,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Verifying Add to Cart from search result to PDP than ATC...");
 
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         // Step 1 — Search for a product
         log.info("Searching for: Ceo");
@@ -91,7 +92,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Verifying Add to Cart from search result...");
 
         HomePage homePage = new HomePage(driver);
-        homePage.navigateTo();
+        BasePage.navigateTo();
 
         // Step 1 — Search for a product
         log.info("Searching for: Ceo");
