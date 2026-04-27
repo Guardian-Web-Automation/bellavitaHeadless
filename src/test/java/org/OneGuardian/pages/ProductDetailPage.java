@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class ProductDetailPage {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductDetailPage.class);
+    public static final Logger log = LoggerFactory.getLogger(ProductDetailPage.class);
     WebDriver driver;
     WebDriverWait wait;
 
@@ -162,4 +162,5 @@ public class ProductDetailPage {
             // If close button isn't found or clickable, ignore — test can continue
         }
     }
+
 }

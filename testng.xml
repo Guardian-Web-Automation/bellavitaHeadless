@@ -15,6 +15,7 @@
             <!-- Each class tag points to one test class -->
             <class name="org.OneGuardian.tests.HomePageTest"/>
             <class name="org.OneGuardian.tests.SearchTest"/>
+            <class name="org.OneGuardian.tests.CartTest"/>
         </classes>
     </test>
 

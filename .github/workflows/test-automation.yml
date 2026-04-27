@@ -105,7 +105,7 @@ jobs:
                     \"type\": \"header\",
                     \"text\": {
                       \"type\": \"plain_text\",
-                      \"text\": \"$STATUS_EMOJI BellaVita Automation Report\"
+                      \"text\": \"$STATUS_EMOJI BellaVita Headless Automation Report\"
                     }
                   },
                   {
@@ -125,7 +125,7 @@ jobs:
                       },
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"*Triggered By:*\nScheduled (10 AM IST)\"
+                        \"text\": \"*Triggered By:*\nGitHub Actions -Daily (10 AM IST)\"
                       }
                     ]
                   },
@@ -180,7 +180,7 @@ jobs:
                     \"elements\": [
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"BellaVita Luxury | Selenium + TestNG + ExtentReports\"
+                        \"text\": \"BellaVita Luxury Headless | Selenium + TestNG + ExtentReports\"
                       }
                     ]
                   }
