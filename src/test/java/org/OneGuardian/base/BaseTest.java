@@ -54,7 +54,6 @@ public class BaseTest {
         log.info("Tearing down WebDriver...");
         if (driver != null) {
             driver.quit();
-
         }
         log.info("Browser closed ✅");
     }

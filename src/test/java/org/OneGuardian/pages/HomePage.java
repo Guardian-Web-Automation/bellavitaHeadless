@@ -1,6 +1,7 @@
 package org.OneGuardian.pages;
 
 import org.OneGuardian.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,12 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[contains(@class,'section-tab') and contains(text(),'BESTSELLERS')]")
     private WebElement bestsellerLink;
 
+    @FindBy(xpath = "//button[contains(@class,'section-tab') and contains(text(),'NEW ARRIVALS')]")
+    private WebElement newArrivalsLink;
+
+    @FindBy(xpath = "//button[contains(@class,'section-tab') and contains(text(),'NEW ARRIVALS')]")
+    private WebElement crazyDealButtonHeader;
+
     // All product titles in bestseller page
     @FindBy(xpath = "//div[@class='product-grid no-scrollbar']//h3")
     private List<WebElement> productTitles;
@@ -48,6 +55,18 @@ public class HomePage extends BasePage {
     // All ATC buttons in bestseller page — same index as productTitles
     @FindBy(xpath = "//div[@class='product-grid no-scrollbar']//button[@class='product-card-add-btn']")
     private List<WebElement> atcButtons;
+
+    @FindBy(xpath = "//a[@href='/collections/best-sellers' and contains(text(),'VIEW ALL')]")
+    private WebElement viewAllBestsellersLink;
+
+    @FindBy(xpath = "//a[@href='/collections/new-arrivals' and contains(text(),'VIEW ALL')]")
+    private WebElement viewAllNewArrivalsLink;
+
+    @FindBy(xpath = "//h1[@class='collection-page-title' and contains(text(),'Best Sellers')]")
+    private WebElement bestSellerCollectionTitle;
+
+    @FindBy(xpath = "//h1[@class='collection-page-title' and contains(text(),'New Arrivals')]")
+    private WebElement NewArrivalCollectionTitle;
 
 
 
@@ -101,6 +120,17 @@ public class HomePage extends BasePage {
             log.info("Navigated to Bestsellers section");
         }catch (Exception e) {
             log.error("Failed to navigate to Bestsellers: " + e.getMessage());
+        }
+    }
+
+    public void navigateToNewArrivals() {
+        try{
+            safeClick(newArrivalsLink);
+            // Wait for products to load
+            wait.until(ExpectedConditions.visibilityOfAllElements(productTitles));
+            log.info("Navigated to New Arrival  section");
+        }catch (Exception e) {
+            log.error("Failed to navigate to New Arrivals: " + e.getMessage());
         }
     }
 
@@ -160,4 +190,38 @@ public class HomePage extends BasePage {
         try { Thread.sleep(2000); } catch (InterruptedException e) { }
     }
 
+    public void clickViewAllBestsellers() {
+        	try {
+            safeClick(viewAllBestsellersLink);
+            waitForVisibility(bestSellerCollectionTitle);
+            log.info("Clicked 'VIEW ALL' in Bestsellers");
+        } catch (Exception e) {
+            log.error("Failed to click 'VIEW ALL' in Bestsellers: " + e.getMessage());
+
+            }
+    }
+
+    public void clickViewAllNewArrivals() {
+        try {
+            safeClick(viewAllNewArrivalsLink);
+            waitForVisibility(NewArrivalCollectionTitle);
+            log.info("Clicked 'VIEW ALL' in New Arrivals");
+        } catch (Exception e) {
+            log.error("Failed to click 'VIEW ALL' in New Arrivals: " + e.getMessage());
+
+        }
+    }
+
+    public void navigateToHeader(String CollectionName, String expectedTitle) {
+        try{
+            WebElement headerTab = driver.findElement(By.xpath("//div[@class='header-nav-inner']//a[contains(text(),'"+CollectionName+"')]"));
+            jsClick(headerTab);
+            // Wait for products to load
+            WebElement expectedTitleElement = driver.findElement(By.xpath("//h1[@class='collection-page-title' and contains(text(),'"+expectedTitle+"')]"));
+            wait.until(ExpectedConditions.visibilityOfAllElements(expectedTitleElement));
+            log.info("Navigated to "+CollectionName+"  section");
+        }catch (Exception e) {
+            log.error("Failed to navigate to "+CollectionName+": " + e.getMessage());
+        }
+    }
 }
