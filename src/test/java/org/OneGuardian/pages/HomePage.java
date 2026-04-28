@@ -68,6 +68,14 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//h1[@class='collection-page-title' and contains(text(),'New Arrivals')]")
     private WebElement NewArrivalCollectionTitle;
 
+    @FindBy(xpath = "(//div[@class='container']//section[@class='section'])[2]")
+    private WebElement LuxuryCategories;
+
+    @FindBy(xpath = "//footer[@class='site-footer']//div[@class='footer-grid-desktop']")
+    private WebElement footer;
+
+
+
 
 
     // Constructor — PageFactory.initElements wires up all @FindBy fields
@@ -98,6 +106,10 @@ public class HomePage extends BasePage {
         return logo.isDisplayed();
     }
 
+    public boolean isFooterDisplayed() {
+        return footer.isDisplayed();
+    }
+
     public void submitSearch() {
         searchInput.sendKeys(org.openqa.selenium.Keys.RETURN);
         wait.until(ExpectedConditions.visibilityOf(firstSearchResult));
@@ -121,6 +133,36 @@ public class HomePage extends BasePage {
         }catch (Exception e) {
             log.error("Failed to navigate to Bestsellers: " + e.getMessage());
         }
+    }
+
+    public void navigateToLuxuryCategory() {
+        try{
+            scrollToElement(LuxuryCategories);
+            log.info("Navigated to Luxury Categories section");
+        }catch (Exception e) {
+            log.error("Failed to navigate to Luxury Categories: " + e.getMessage());
+        }
+    }
+
+    public void navigateToFooter() {
+        try{
+            scrollToElement(footer);
+            log.info("Navigated to footer section");
+        }catch (Exception e) {
+            log.error("Failed to navigate to footer Categories: " + e.getMessage());
+        }
+    }
+
+    public void clickLuxuryCategory(String categoryName,String ExpextedPageTitle) {
+        	try {
+                WebElement categoryTab = driver.findElement(By.xpath("//h3[@class='category-card-title'and contains(text(),'" + categoryName + "')]"));
+                safeClick(categoryTab);
+                // Wait for products to load
+                WebElement expectedTitleElement = driver.findElement(By.xpath("//h1[@class='collection-page-title' and contains(text(),'"+ExpextedPageTitle+"')]"));
+                wait.until(ExpectedConditions.visibilityOf(expectedTitleElement));
+            } catch (Exception e) {
+                log.error("Failed to click on category: " + categoryName + " | " + e.getMessage());
+            }
     }
 
     public void navigateToNewArrivals() {
@@ -176,19 +218,6 @@ public class HomePage extends BasePage {
 
     // ─── Reusable helper — adds a product to cart before each cart test ───
     // Avoids code duplication across all cart test methods
-    public void addProductToCart() {
-        navigateTo();
-        clickSearchIcon();
-        enterSearchText("CEO Man");
-        submitSearch();
-        clickFirstSearchResult();
-
-        ProductDetailPage productPage = new ProductDetailPage(driver);
-        productPage.clickAddToCart();
-
-        // Wait for cart to update
-        try { Thread.sleep(2000); } catch (InterruptedException e) { }
-    }
 
     public void clickViewAllBestsellers() {
         	try {
@@ -222,6 +251,18 @@ public class HomePage extends BasePage {
             log.info("Navigated to "+CollectionName+"  section");
         }catch (Exception e) {
             log.error("Failed to navigate to "+CollectionName+": " + e.getMessage());
+        }
+    }
+
+    public void clickFooterCategory(String categiryName, String expectedUrl) {
+        try {
+            WebElement categiryNameElement = driver.findElement(By.xpath("//h4[@class='footer-column-title']//..//li/a[contains(text(),'" + categiryName + "')]"));
+            jsClick(categiryNameElement);
+            wait.until(ExpectedConditions.urlContains(expectedUrl));
+
+            log.info("Clicked footer category: " + categiryName);
+        }catch (Exception e) {
+            log.error("Failed to click footer category: " + categiryName + " | " + e.getMessage());
         }
     }
 }

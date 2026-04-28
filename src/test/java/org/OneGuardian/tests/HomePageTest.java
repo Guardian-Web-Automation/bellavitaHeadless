@@ -3,9 +3,11 @@ package org.OneGuardian.tests;
 import org.OneGuardian.base.BasePage;
 import org.OneGuardian.base.BaseTest;
 import org.OneGuardian.pages.HomePage;
+import org.OneGuardian.utils.ExcelUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class HomePageTest extends BaseTest {
@@ -53,6 +55,17 @@ public class HomePageTest extends BaseTest {
                 "Logo is not visible on the homepage!");
         log.info("Logo is visible on homepage ✅");
     }
+    @Test(enabled = true)
+    public void verifyNavigateToFooter() {
+        log.info("TEST: Verifying navigating to  footer...");
+        HomePage homePage = new HomePage(driver);
+        BasePage.navigateTo();
+        homePage.navigateToFooter();
+
+        Assert.assertTrue(homePage.isFooterDisplayed(),
+                "Footer is not visible on the homepage!");
+        log.info("Footer is visible on homepage ✅");
+    }
 
     @Test
     public void verifyBestsellersLink() {
@@ -86,86 +99,90 @@ public class HomePageTest extends BaseTest {
         log.info("New Arrival link verified successfully ✅");
     }
 
-    @Test
-    public void verifyCrazyDealLinkHeader() {
-        log.info("TEST: Verifying New Crazy deal link at Header...");
+    @DataProvider(name = "headerLinksData")
+    public Object[][] HeaderLinkData() {
+        return new Object[][] {
+                {"Crazy Deals", "Crazy Deals", "build-a-box"},
+                {"Shop All", "All Products", "all-products"},
+                {"BestSellers", "Best Sellers", "best-sellers"},
+                {"Perfumes", "All perfumes", "all-perfumes"},
+                {"Bath & Body", "Bath & Body", "bath-body"},
+                {"Little Luxuries", "Little Luxuries", "little-luxuries"},
+                {"New Arrivals", "New Arrivals", "new-arrivals"}
+        };
+    }
+
+    @Test(dataProvider = "headerLinksData", enabled = true)
+    public void verifyHeaderLinks(String collectionName, String expectedHeader, String expectedUrl) {
+        log.info("TEST: Verifying Header link at HomePage...");
         HomePage homePage = new HomePage(driver);
         BasePage.navigateTo();
-        String collectionName = "Crazy Deals";
-        String expectedHeader = "Crazy Deals";
         homePage.navigateToHeader(collectionName,expectedHeader);
         String actualUrl = homePage.getCurrentUrl();
         log.info("Current URL after clicking "+collectionName+": " + actualUrl);
 
-        Assert.assertTrue(actualUrl.contains("/build-a-box"),
-                "Did not navigate to New Arrival page!");
+        Assert.assertTrue(actualUrl.contains("/"+expectedUrl+""),
+                "Did not navigate to HeaderLInk!--"+collectionName+"--");
         log.info("The "+collectionName +" link verified successfully ✅");
     }
 
-    @Test
-    public void verifyShopAllLinkHeader() {
-        log.info("TEST: Verifying New Shop All link at Header...");
+
+
+    @DataProvider(name = "luxuryCategoriesData")
+    public Object[][] luxuryCategoriesData() {
+        return new Object[][] {
+                {"Luxury Perfumes", "Premium Fragrances", "/premium-fragrances"},
+                {"Body Washes", "Shower Gel", "/shower-gel"},
+                {"Body Lotions", "BodyLotion", "/bodylotion"},
+                {"Body Deos", "Body Parfum", "/body-parfum"},
+                {"Gift Sets", "All Gift Sets", "all-gift-sets"}
+        };
+    }
+    @Test(dataProvider = "luxuryCategoriesData", enabled = true)
+    public void verifyCollectionUnderLuxuryCategories(String collectionName,String expectedHeader, String expectedUrl) {
+        log.info("TEST: Verifying Luxury Perfumes link at Luxury Categories at home page...");
         HomePage homePage = new HomePage(driver);
         BasePage.navigateTo();
-        String collectionName = "Shop All";
-        String expectedHeader = "All Products";
-        homePage.navigateToHeader(collectionName,expectedHeader);
+        homePage.navigateToLuxuryCategory();
+        homePage.clickLuxuryCategory(collectionName,expectedHeader);
         String actualUrl = homePage.getCurrentUrl();
         log.info("Current URL after clicking "+collectionName+": " + actualUrl);
 
-        Assert.assertTrue(actualUrl.contains("/all-products"),
+        Assert.assertTrue(actualUrl.contains(""+expectedUrl+""),
                 "Did not navigate to New Arrival page!");
         log.info("The "+collectionName +" link verified successfully ✅");
     }
 
-    @Test
-    public void verifyBestSellersLinkHeader() {
-        log.info("TEST: Verifying New BestSellers link at Header...");
+    @DataProvider(name = "footerLinksData")
+    public Object[][] FooterCategoryData() {
+        return new Object[][] {
+                { "Blogs", "blogs"},
+                { "Terms & Conditions", "terms-and-conditions"},
+                { "Privacy Policy", "privacy-policy"},
+                { "Refund and Return", "refund-and-return"},
+                { "Shipping Policy", "shipping-and-delivery"},
+                { "About Us", "about-us"},
+                { "Contact Us", "contact-us"},
+                { "Order Tracking", "tracking"},
+                { "All Products", "all"},
+                { "FAQ", "frequently-asked-questions"},
+
+        };
+    }
+    @Test(dataProvider = "footerLinksData", enabled = true)
+    public void verifyFooterLinks(String CategiryName, String expectedUrl) {
+        log.info("TEST: Verifying Footer link  at home page...");
         HomePage homePage = new HomePage(driver);
         BasePage.navigateTo();
-        String collectionName = "BestSellers";
-        String expectedHeader = "Best Sellers";
-        homePage.navigateToHeader(collectionName,expectedHeader);
+        homePage.navigateToFooter();
+        homePage.clickFooterCategory(CategiryName,expectedUrl);
+
         String actualUrl = homePage.getCurrentUrl();
-        log.info("Current URL after clicking "+collectionName+": " + actualUrl);
+        log.info("Current URL after clicking "+CategiryName+": " + actualUrl);
 
-        Assert.assertTrue(actualUrl.contains("/best-sellers"),
-                "Did not navigate to New Arrival page!");
-        log.info("The "+collectionName +" link verified successfully ✅");
+        Assert.assertTrue(actualUrl.contains(""+expectedUrl+""),
+                "Did not navigate to Footer link page!");
+        log.info("The "+CategiryName +" link verified successfully ✅");
     }
-
-    @Test
-    public void verifyLittleLuxuriesLinkHeader() {
-        log.info("TEST: Verifying New Little Luxuries link at Header...");
-        HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
-        String collectionName = "Little Luxuries";
-        String expectedHeader = "Little Luxuries";
-        homePage.navigateToHeader(collectionName,expectedHeader);
-        String actualUrl = homePage.getCurrentUrl();
-        log.info("Current URL after clicking "+collectionName+": " + actualUrl);
-
-        Assert.assertTrue(actualUrl.contains("/little-luxuries"),
-                "Did not navigate to New Arrival page!");
-        log.info("The "+collectionName +" link verified successfully ✅");
-    }
-
-
-    @Test
-    public void verifyNewArrivalsLinkHeader() {
-        log.info("TEST: Verifying New New Arrivals link at Header...");
-        HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
-        String collectionName = "New Arrivals";
-        String expectedHeader = "New Arrivals";
-        homePage.navigateToHeader(collectionName,expectedHeader);
-        String actualUrl = homePage.getCurrentUrl();
-        log.info("Current URL after clicking "+collectionName+": " + actualUrl);
-
-        Assert.assertTrue(actualUrl.contains("/new-arrivals"),
-                "Did not navigate to New Arrival page!");
-        log.info("The "+collectionName +" link verified successfully ✅");
-    }
-
 
 }

@@ -123,24 +123,11 @@ public class CartPage extends BasePage {
     public void clickIncreaseQuantity() {
         scrollAndClick(increaseQtyButton);
         log.info("Clicked increase quantity button");
-//        ((JavascriptExecutor) driver).executeScript(
-//                "arguments[0].scrollIntoView(true);", increaseQtyButton);
-//        wait.until(ExpectedConditions.elementToBeClickable(increaseQtyButton));
-//        increaseQtyButton.click();
-//        log.info("Clicked increase quantity button");
-//        // Wait for quantity to update
-//        try { Thread.sleep(1000); } catch (InterruptedException e) { }
     }
 
     public void clickDecreaseQuantity() {
         scrollAndClick(decreaseQtyButton);
         log.info("Clicked decrease quantity button");
-//        ((JavascriptExecutor) driver).executeScript(
-//                "arguments[0].scrollIntoView(true);", decreaseQtyButton);
-//        wait.until(ExpectedConditions.elementToBeClickable(decreaseQtyButton));
-//        decreaseQtyButton.click();
-//        log.info("Clicked decrease quantity button");
-//        try { Thread.sleep(1000); } catch (InterruptedException e) { }
     }
 
     public void clickRemoveItem() {
@@ -180,4 +167,5 @@ public class CartPage extends BasePage {
             // If close button isn't found or clickable, ignore — test can continue
         }
     }
+
 }
