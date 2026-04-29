@@ -49,7 +49,6 @@ public class CrazyDealsPage extends BasePage {
     private WebElement progressTextAfterAdding;
 
 
-
     // Deal unlocked message — "You've unlocked ₹1,298.00 Deal Price"
     @FindBy(xpath = "//span[@class='build-a-box-sticky-bar__total' and contains(text(),'unlocked')]")
     private WebElement dealUnlockedMessage;
@@ -118,7 +117,7 @@ public class CrazyDealsPage extends BasePage {
 
     public void clickBuildYourBox(String dealName) {
         log.info("Looking for deal: " + dealName);
-        WebElement buildYourBoxBtnForDeal = driver.findElement(By.xpath("//h3[contains(text(),'"+dealName+"')]/ancestor::div[contains(@class,'collection-product-card')]//a[2]")
+        WebElement buildYourBoxBtnForDeal = driver.findElement(By.xpath("//h3[contains(text(),'" + dealName + "')]/ancestor::div[contains(@class,'collection-product-card')]//a[2]")
         );
         safeClick(buildYourBoxBtnForDeal);
         log.info("Clicked Build Your Box button");
@@ -146,7 +145,10 @@ public class CrazyDealsPage extends BasePage {
             ((JavascriptExecutor) driver).executeScript(
                     "arguments[0].scrollIntoView(true);", addBtn);
 
-            try { Thread.sleep(500); } catch (InterruptedException e) { }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+            }
 
             // Click
             try {
@@ -161,7 +163,10 @@ public class CrazyDealsPage extends BasePage {
             }
 
             // Wait for progress to update
-            try { Thread.sleep(1000); } catch (InterruptedException e) { }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
             return true;
 
         } catch (Exception e) {
@@ -182,7 +187,6 @@ public class CrazyDealsPage extends BasePage {
 
         if (!spanProgress.isEmpty()) {
             String text = spanProgress.get(0).getText().trim();
-            log.info("Progress text (span): " + text);
             return text;
         }
 
@@ -227,6 +231,7 @@ public class CrazyDealsPage extends BasePage {
             return "";
         }
     }
+
     public String getItemValuePrice() {
         try {
             waitForVisibility(itemValuePrice);
@@ -235,7 +240,6 @@ public class CrazyDealsPage extends BasePage {
             // Then remove the original/strikethrough price part
             // getOriginalPrice() gives us "₹999.00" to strip out
             String fullText = itemValuePrice.getText().trim();
-            log.info("Full price text: " + fullText);
 
             // Get strikethrough price text to remove it
             String strikePrice = originalPrice.getText().trim();
@@ -283,5 +287,69 @@ public class CrazyDealsPage extends BasePage {
         } catch (Exception e) {
             return "";
         }
+
+    }
+
+    // Click + button multiple times for same product
+    public boolean addProductToBoxMultipleTimes(String productName, int times) {
+        log.info("Adding product: " + productName + " × " + times);
+
+        for (int t = 0; t < times; t++) {
+            try {
+                WebElement addBtn;
+
+                if (t == 0) {
+                    // ── First click ──
+                    // Button says "Add to box" — initial state
+                    String xpath = "//button[contains(@class,'build-a-box-card-title')" +
+                            " and contains(text(),'" + productName + "')]" +
+                            "//..//..//button[@aria-label='Add to box']";
+                    addBtn = driver.findElement(By.xpath(xpath));
+                    log.info("Using 'Add to box' button for first click");
+
+                } else {
+                    // ── Subsequent clicks ──
+                    // Button changes to "Increase quantity" after first click
+                    String xpath = "//button[contains(@class,'build-a-box-card-title')" +
+                            " and contains(text(),'" + productName + "')]" +
+                            "//..//..//button[@aria-label='Increase quantity']";
+                    addBtn = driver.findElement(By.xpath(xpath));
+                    log.info("Using 'Increase quantity' button for click " + (t + 1));
+                }
+
+                // Scroll into view
+                scrollToElement(addBtn);
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                }
+
+                try {
+                    safeClick(addBtn);
+                    log.info("✅ Click " + (t + 1) + "/" + times
+                            + " for: " + productName);
+                } catch (Exception e) {
+                    log.warn("Normal click failed — using JS click");
+                   jsClick(addBtn);
+                    log.info("✅ JS click " + (t + 1) + "/"
+                            + times + " for: " + productName);
+                }
+
+                // Wait for DOM to update after each click
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+
+            } catch (Exception e) {
+                log.error("❌ Failed at click " + (t + 1)
+                        + " for: " + productName + " | " + e.getMessage());
+                return false;
+            }
+        }
+
+        log.info("✅ Successfully added " + productName + " × " + times);
+        return true;
     }
 }

@@ -183,10 +183,8 @@ public class CrazyDealsTest extends BaseTest {
         crazyDealsPage.addProductToBox("KLUB");
 
         String dealPrice = crazyDealsPage.getItemValuePrice();
-        log.info("Deal price after adding 3 product: " + dealPrice);
 
         String originalPrice = crazyDealsPage.getOriginalPrice();
-        log.info("Original price: " + originalPrice);
 
         // Verify neither is empty before parsing
         Assert.assertFalse(dealPrice.isEmpty(),
@@ -227,8 +225,104 @@ public class CrazyDealsTest extends BaseTest {
                 + " is less than original " + originalPrice);
     }
 
-    // ─────────────────────────────────────────
-    // TEST 8 — Verify Saving Amount is Displayed
-    // ─────────────────────────────────────────
 
+
+// TEST 8 — Verify 1 Product × 3 Quantity Completes the Box
+// Flow: WHITE OUD × 3 → 3/3 ADDED → Deal Unlocked
+// ─────────────────────────────────────────
+    @Test
+    public void verifyOneProductThreeQuantityCompletesDeal() {
+        log.info("TEST: Verifying 1 product × 3 qty completes the deal...");
+
+        HomePage homePage = new HomePage(driver);
+        BasePage.navigateTo();
+
+        CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
+        crazyDealsPage.clickCrazyDealsNav();
+        crazyDealsPage.clickBuildYourBox("Ultimate Perfume Box");
+
+        // Step 1 — Add WHITE OUD 3 times
+        log.info("Step 1: Adding WHITE OUD × 3...");
+        boolean added = crazyDealsPage.addProductToBoxMultipleTimes("WHITE OUD", 3);
+        Assert.assertTrue(added,
+                "Failed to add WHITE OUD 3 times!");
+
+        // Step 2 — Verify progress shows 3/3
+        String progress = crazyDealsPage.getProgressText();
+        log.info("Step 2: Progress → " + progress);
+        Assert.assertTrue(progress.contains("3/3"),
+                "Progress should be 3/3! Actual: " + progress);
+
+        // Step 3 — Verify deal is unlocked
+        Assert.assertTrue(crazyDealsPage.isDealUnlocked(),
+                "Deal should be unlocked after 1 product × 3 qty!");
+
+        // Step 4 — Verify Pay Now button appears
+        Assert.assertTrue(crazyDealsPage.isPayNowButtonDisplayed(),
+                "Pay Now button should appear!");
+
+        // Step 5 — Verify deal price shows ₹1,298
+        String dealPrice = crazyDealsPage.getItemValuePrice();
+        Assert.assertTrue(dealPrice.contains("1,298"),
+                "Deal price should be ₹1,298! Actual: " + dealPrice);
+
+        log.info("✅ 1 product × 3 qty completes the deal | Price: " + dealPrice);
+    }
+
+    // ─────────────────────────────────────────
+// TEST 09 — Verify 1 Product × 2 Qty + 1 Different Product Completes Box
+// Flow: WHITE OUD × 2 + SKAI × 1 → 3/3 ADDED → Deal Unlocked
+// ─────────────────────────────────────────
+    @Test
+    public void verifyTwoQtyOneProductPlusOneOtherCompletesDeal() {
+        log.info("TEST: Verifying 2 qty of 1 product + 1 other completes deal...");
+
+        HomePage homePage = new HomePage(driver);
+        BasePage.navigateTo();
+
+        CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
+        crazyDealsPage.clickCrazyDealsNav();
+        crazyDealsPage.clickBuildYourBox("Ultimate Perfume Box");
+
+        // Step 1 — Add WHITE OUD × 2
+        log.info("Step 1: Adding WHITE OUD × 2...");
+        boolean addedTwo = crazyDealsPage.addProductToBoxMultipleTimes("WHITE OUD", 2);
+        Assert.assertTrue(addedTwo,
+                "Failed to add WHITE OUD 2 times!");
+
+        // Step 2 — Verify progress is 2/3
+        String progressAfterTwo = crazyDealsPage.getProgressText();
+        log.info("Step 2: Progress after 2 items → " + progressAfterTwo);
+        Assert.assertTrue(progressAfterTwo.contains("2/3"),
+                "Progress should be 2/3! Actual: " + progressAfterTwo);
+
+        // Step 3 — Add SKAI × 1
+        log.info("Step 3: Adding SKAI × 1...");
+        boolean addedOne = crazyDealsPage.addProductToBox("SKAI");
+        Assert.assertTrue(addedOne,
+                "Failed to add SKAI!");
+
+        // Step 4 — Verify progress is 3/3
+        String progressAfterThree = crazyDealsPage.getProgressText();
+        log.info("Step 4: Progress after 3 items → " + progressAfterThree);
+        Assert.assertTrue(progressAfterThree.contains("3/3"),
+                "Progress should be 3/3! Actual: " + progressAfterThree);
+
+        // Step 5 — Verify deal is unlocked
+        Assert.assertTrue(crazyDealsPage.isDealUnlocked(),
+                "Deal should be unlocked!");
+
+        // Step 6 — Verify Pay Now button appears
+        Assert.assertTrue(crazyDealsPage.isPayNowButtonDisplayed(),
+                "Pay Now button should appear!");
+
+        // Step 7 — Verify deal price shows ₹1,298
+        String dealPrice = crazyDealsPage.getItemValuePrice();
+        log.info("Step 7: Deal price → " + dealPrice);
+        Assert.assertTrue(dealPrice.contains("1,298"),
+                "Deal price should be ₹1,298! Actual: " + dealPrice);
+
+        log.info("✅ 2 qty WHITE OUD + 1 SKAI completes the deal | Price: "
+                + dealPrice);
+    }
 }

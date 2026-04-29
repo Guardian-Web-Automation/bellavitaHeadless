@@ -146,11 +146,11 @@ public class HomePageTest extends BaseTest {
         homePage.navigateToLuxuryCategory();
         homePage.clickLuxuryCategory(collectionName,expectedHeader);
         String actualUrl = homePage.getCurrentUrl();
-        log.info("Current URL after clicking "+collectionName+": " + actualUrl);
+        log.info("The Current URL after clicking "+collectionName+": " + actualUrl);
 
         Assert.assertTrue(actualUrl.contains(""+expectedUrl+""),
                 "Did not navigate to New Arrival page!");
-        log.info("The "+collectionName +" link verified successfully ✅");
+        log.info("The "+collectionName +" link verified successfully for luxury category✅");
     }
 
     @DataProvider(name = "footerLinksData")
@@ -178,11 +178,11 @@ public class HomePageTest extends BaseTest {
         homePage.clickFooterCategory(CategiryName,expectedUrl);
 
         String actualUrl = homePage.getCurrentUrl();
-        log.info("Current URL after clicking "+CategiryName+": " + actualUrl);
+        log.info("Footer Current URL after clicking "+CategiryName+": " + actualUrl);
 
         Assert.assertTrue(actualUrl.contains(""+expectedUrl+""),
                 "Did not navigate to Footer link page!");
-        log.info("The "+CategiryName +" link verified successfully ✅");
+        log.info("The "+CategiryName +" link verified successfully for footer✅");
     }
 
 }

@@ -117,14 +117,6 @@ jobs:
                       },
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"*Run Number:*\n#${{ github.run_number }}\"
-                      },
-                      {
-                        \"type\": \"mrkdwn\",
-                        \"text\": \"*Branch:*\n${{ github.ref_name }}\"
-                      },
-                      {
-                        \"type\": \"mrkdwn\",
                         \"text\": \"*Triggered By:*\nGitHub Actions -Daily (10 AM IST)\"
                       }
                     ]
