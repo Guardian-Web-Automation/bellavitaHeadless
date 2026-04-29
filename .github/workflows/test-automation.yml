@@ -3,7 +3,7 @@ name: BellaVita Automation Suite
 on:
   # Runs every day at 10:00 AM IST (04:30 UTC = 10:00 AM IST)
   schedule:
-    - cron: '30 4 * * *'
+    - cron: '30 2 * * *'
 
   # Also allows manual trigger from GitHub UI anytime
   workflow_dispatch:
@@ -58,7 +58,7 @@ jobs:
       - name: Send Slack Notification
         if: always()
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.QA_AUTOMATION_SLACK_CHANNEL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL}}
         run: |
           # ─── Parse testng-results.xml for test stats ───
           RESULT_FILE="target/surefire-reports/testng-results.xml"
@@ -117,7 +117,7 @@ jobs:
                       },
                       {
                         \"type\": \"mrkdwn\",
-                        \"text\": \"*Triggered By:*\nGitHub Actions -Daily (10 AM IST)\"
+                        \"text\": \"*Triggered By:*\nGitHub Actions -Daily (8 AM IST)\"
                       }
                     ]
                   },
@@ -128,7 +128,7 @@ jobs:
                     \"type\": \"section\",
                     \"text\": {
                       \"type\": \"mrkdwn\",
-                      \"text\": \"*📊 Test Results Summary*\"
+                      \"text\": \"*🤖 Test Results Summary*\"
                     }
                   },
                   {
@@ -136,7 +136,7 @@ jobs:
               \"fields\": [
                 {
                   \"type\": \"mrkdwn\",
-                  \"text\": \"*🔢 Total Tests:*\n$TOTAL\"
+                  \"text\": \"*📊 Total Tests:*\n$TOTAL\"
                 },
                 {
                   \"type\": \"mrkdwn\",
