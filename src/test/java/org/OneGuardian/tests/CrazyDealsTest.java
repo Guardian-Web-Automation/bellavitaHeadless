@@ -19,9 +19,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyCrazyDealsPageLoads() {
         log.info("TEST: Verifying Crazy Deals page loads...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -38,9 +37,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyBuildYourBoxOpens() {
         log.info("TEST: Verifying Build Your Box page opens...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -62,9 +60,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyProgressAfterAddingOneProduct() {
         log.info("TEST: Verifying progress after adding 1 product...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -88,9 +85,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyProgressAfterAddingTwoProducts() {
         log.info("TEST: Verifying progress after adding 2 products...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -114,9 +110,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyDealUnlocksAfterThreeProducts() {
         log.info("TEST: Verifying deal unlocks after adding 3 products...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -146,9 +141,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyPayNowButtonAfterDealUnlock() {
         log.info("TEST: Verifying Pay Now button appears after 3/3...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -170,9 +164,9 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyItemValuePriceUpdatesOnAddingProduct() {
         log.info("TEST: Verifying item value price updates after adding product...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -233,9 +227,8 @@ public class CrazyDealsTest extends BaseTest {
     @Test
     public void verifyOneProductThreeQuantityCompletesDeal() {
         log.info("TEST: Verifying 1 product × 3 qty completes the deal...");
-
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();
@@ -278,7 +271,7 @@ public class CrazyDealsTest extends BaseTest {
         log.info("TEST: Verifying 2 qty of 1 product + 1 other completes deal...");
 
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         CrazyDealsPage crazyDealsPage = new CrazyDealsPage(driver);
         crazyDealsPage.clickCrazyDealsNav();

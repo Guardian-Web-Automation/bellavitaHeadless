@@ -3,7 +3,6 @@ package org.OneGuardian.tests;
 import org.OneGuardian.base.BasePage;
 import org.OneGuardian.base.BaseTest;
 import org.OneGuardian.pages.HomePage;
-import org.OneGuardian.utils.ExcelUtility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -20,7 +19,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHomePageTitle() {
         log.info("TEST: Verifying homepage title...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         String actualTitle = homePage.getPageTitle();
         String expectedTitle = "Bella Vita Luxury | Buy Best Perfumes Online";
@@ -35,12 +34,12 @@ public class HomePageTest extends BaseTest {
     public void verifyHomePageUrl() {
         log.info("TEST: Verifying homepage URL...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         String actualUrl = homePage.getCurrentUrl();
 
         // Assert.assertTrue → fails if condition is false
-        Assert.assertTrue(actualUrl.contains("bellavitaluxury.co.in"),
+        Assert.assertTrue(actualUrl.contains("myshopify.dev"),
                 "URL does not contain expected domain!");
         log.info("Homepage URL verified successfully ✅");
     }
@@ -49,7 +48,7 @@ public class HomePageTest extends BaseTest {
     public void verifyLogoIsDisplayed() {
         log.info("TEST: Verifying logo visibility...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         Assert.assertTrue(homePage.isLogoDisplayed(),
                 "Logo is not visible on the homepage!");
@@ -59,7 +58,7 @@ public class HomePageTest extends BaseTest {
     public void verifyNavigateToFooter() {
         log.info("TEST: Verifying navigating to  footer...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToFooter();
 
         Assert.assertTrue(homePage.isFooterDisplayed(),
@@ -71,7 +70,7 @@ public class HomePageTest extends BaseTest {
     public void verifyBestsellersLink() {
         log.info("TEST: Verifying Bestsellers link...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         homePage.navigateToBestsellers();
         homePage.clickViewAllBestsellers();
@@ -87,7 +86,7 @@ public class HomePageTest extends BaseTest {
     public void verifyNewArrivalsLink() {
         log.info("TEST: Verifying New Arrivals link...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         homePage.navigateToNewArrivals();
         homePage.clickViewAllNewArrivals();
@@ -116,7 +115,7 @@ public class HomePageTest extends BaseTest {
     public void verifyHeaderLinks(String collectionName, String expectedHeader, String expectedUrl) {
         log.info("TEST: Verifying Header link at HomePage...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToHeader(collectionName,expectedHeader);
         String actualUrl = homePage.getCurrentUrl();
         log.info("Current URL after clicking "+collectionName+": " + actualUrl);
@@ -142,7 +141,7 @@ public class HomePageTest extends BaseTest {
     public void verifyCollectionUnderLuxuryCategories(String collectionName,String expectedHeader, String expectedUrl) {
         log.info("TEST: Verifying Luxury Perfumes link at Luxury Categories at home page...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToLuxuryCategory();
         homePage.clickLuxuryCategory(collectionName,expectedHeader);
         String actualUrl = homePage.getCurrentUrl();
@@ -173,7 +172,7 @@ public class HomePageTest extends BaseTest {
     public void verifyFooterLinks(String CategiryName, String expectedUrl) {
         log.info("TEST: Verifying Footer link  at home page...");
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToFooter();
         homePage.clickFooterCategory(CategiryName,expectedUrl);
 

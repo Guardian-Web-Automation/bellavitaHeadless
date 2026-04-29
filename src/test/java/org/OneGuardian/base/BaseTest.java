@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class BaseTest {
-    protected static WebDriver driver;
+    public static WebDriver driver;
     protected static final Logger log = LogManager.getLogger(BaseTest.class);
 
 

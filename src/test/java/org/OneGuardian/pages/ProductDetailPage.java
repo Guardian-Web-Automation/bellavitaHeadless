@@ -1,14 +1,16 @@
 package org.OneGuardian.pages;
 
 import org.OneGuardian.base.BasePage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductDetailPage extends BasePage {
+    protected static final Logger log = LogManager.getLogger(ProductDetailPage.class);
 
 
     // =====================
@@ -50,7 +52,6 @@ public class ProductDetailPage extends BasePage {
 
     public ProductDetailPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     // =====================
@@ -111,21 +112,6 @@ public class ProductDetailPage extends BasePage {
         safeClick(addToCartButtonAtProductCard);
     }
 
-
-    public boolean isCartNotificationVisible() {
-        try {
-            // Wait for notification to appear after ATC click
-            wait.until(ExpectedConditions.visibilityOf(cartNotification));
-            return cartNotification.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public String getCartNotificationProductTitle() {
-        wait.until(ExpectedConditions.visibilityOf(cartNotificationProductTitle));
-        return cartNotificationProductTitle.getText();
-    }
 
     public String getCartCount() {
         try {

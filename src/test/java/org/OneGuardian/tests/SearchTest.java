@@ -34,7 +34,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Searching for keyword → " + keyword);
 
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         homePage.clickSearchIcon();
         homePage.enterSearchText(keyword);
@@ -55,7 +55,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Verifying Add to Cart from search result to PDP than ATC...");
 
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         // Step 1 — Search for a product
         log.info("Searching for: Ceo");
@@ -92,7 +92,7 @@ public class SearchTest extends BaseTest {
         log.info("TEST: Verifying Add to Cart from search result...");
 
         HomePage homePage = new HomePage(driver);
-        BasePage.navigateTo();
+        homePage.navigateTo();
 
         // Step 1 — Search for a product
         log.info("Searching for: Ceo");

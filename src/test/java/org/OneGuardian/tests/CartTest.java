@@ -22,7 +22,8 @@ public class CartTest extends BaseTest {
     public void verifyCartPageLoads() {
         log.info("TEST: Verifying cart page loads...");
         HomePage  homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
+
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 
@@ -41,7 +42,7 @@ public class CartTest extends BaseTest {
     public void verifyATCForSpecificProductInBestsellers() {
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
 
         // Step 1 — Go to Bestsellers
         homePage.navigateToBestsellers();
@@ -89,7 +90,7 @@ public class CartTest extends BaseTest {
         log.info("TEST: Verifying cart item count...");
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 
@@ -114,7 +115,7 @@ public class CartTest extends BaseTest {
         log.info("TEST: Verifying increase quantity in cart...");
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 
@@ -145,7 +146,7 @@ public class CartTest extends BaseTest {
         log.info("TEST: Verifying decrease quantity in cart...");
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 
@@ -176,7 +177,7 @@ public class CartTest extends BaseTest {
         log.info("TEST: Verifying remove item from cart...");
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 
@@ -199,7 +200,7 @@ public class CartTest extends BaseTest {
         log.info("TEST: Verifying cart total price is displayed...");
 
         HomePage homePage = new HomePage(driver);
-        HomePage.navigateTo();
+        homePage.navigateTo();
         homePage.navigateToBestsellers();
         homePage.clickATCByProductName("WHITE OUD");
 

@@ -17,6 +17,7 @@
             <class name="org.OneGuardian.tests.SearchTest"/>
             <class name="org.OneGuardian.tests.CartTest"/>
             <class name="org.OneGuardian.tests.CrazyDealsTest"/>
+            <class name = "org.OneGuardian.tests.FilterSortTest"/>
         </classes>
     </test>
 

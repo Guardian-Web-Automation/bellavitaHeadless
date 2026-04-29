@@ -8,14 +8,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.List;
 
 public class CrazyDealsPage extends BasePage {
+    protected static final Logger log = LogManager.getLogger(CrazyDealsPage.class);
 
     // =====================
     // Locators
@@ -271,24 +268,7 @@ public class CrazyDealsPage extends BasePage {
         }
     }
 
-    public String getSavingAmount() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(savingAmount));
-            return savingAmount.getText().trim();
-        } catch (Exception e) {
-            return "";
-        }
-    }
 
-    public String getYourBoxTitle() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(yourBoxTitle));
-            return yourBoxTitle.getText().trim();
-        } catch (Exception e) {
-            return "";
-        }
-
-    }
 
     // Click + button multiple times for same product
     public boolean addProductToBoxMultipleTimes(String productName, int times) {

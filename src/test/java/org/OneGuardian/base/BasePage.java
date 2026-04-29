@@ -13,8 +13,8 @@ import java.time.Duration;
 
 public class BasePage {
 
-    protected static WebDriver driver;
-    protected WebDriverWait wait;
+    protected WebDriver driver;
+    protected static WebDriverWait wait;
     protected JavascriptExecutor jsExecutor;
     protected static final Logger log = LogManager.getLogger(BasePage.class);
 
@@ -22,7 +22,12 @@ public class BasePage {
     // CONSTRUCTOR
     // ========================================
     public BasePage(WebDriver driver) {
-        BasePage.driver = driver;
+
+        if (driver == null) {
+            throw new IllegalArgumentException(
+                    "WebDriver cannot be null! Check BaseTest.setUp()");
+        }
+        this.driver = driver;
         this.jsExecutor = (JavascriptExecutor) driver;
 
         // Set timeout based on headless mode
@@ -50,8 +55,8 @@ public class BasePage {
             log.warn("Sleep interrupted during scroll: {}", e.getMessage());
         }
     }
-    public static void navigateTo() {
-        driver.get("https://www.bellavitaluxury.co.in/");
+    public  void navigateTo() {
+        driver.get("https://bvl---live-59c56cb80d07a4341b5e.o2.myshopify.dev");
         log.info("Navigated to homepage");
     }
     public String getPageTitle() {
@@ -380,5 +385,9 @@ public class BasePage {
                 }
             }
         }
+    }
+
+    public  void waitForUrlToContain(String s) {
+        wait.until(ExpectedConditions.urlContains(s));
     }
 }
