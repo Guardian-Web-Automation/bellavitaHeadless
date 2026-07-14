@@ -30,7 +30,13 @@ jobs:
 
       # Step 4 — Run tests via Maven
       # -Dheadless=true runs Chrome without UI (required on Linux servers)
+      # GOOGLE_* env vars let GmailOtpReader authenticate without a local .env file
+      # (add the actual values under Settings -> Secrets and variables -> Actions)
       - name: Run Selenium Tests
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
         run: mvn test -Dheadless=true -Dsurefire.failIfNoSpecifiedTests=false
         continue-on-error: true  # Don't stop workflow if tests fail
         # We still want Slack notification sent

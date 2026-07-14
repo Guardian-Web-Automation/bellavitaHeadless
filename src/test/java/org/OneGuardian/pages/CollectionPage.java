@@ -78,6 +78,10 @@ public class CollectionPage extends BasePage {
     @FindBy(xpath = "//button[@class='collection-applied-filter-chip']")
     private WebElement filterApplied;
 
+    // "ADD TO CART" button on the first product card of the grid
+    @FindBy(xpath = "(//div[@class='collection-products-grid']//button[@class='collection-product-add-btn'])[1]")
+    private WebElement firstProductAddToCartButton;
+
     // =====================
     // Constructor
     // =====================
@@ -214,6 +218,11 @@ public class CollectionPage extends BasePage {
     }
 
 
+
+    public void addFirstProductToCart() {
+        safeClick(firstProductAddToCartButton);
+        log.info("Added first product on the grid to cart");
+    }
 
     public boolean isFilterApplied(String filterName) {
         waitForVisibility(filterApplied);
