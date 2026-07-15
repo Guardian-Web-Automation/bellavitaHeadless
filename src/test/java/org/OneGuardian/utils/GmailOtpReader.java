@@ -40,7 +40,7 @@ public class GmailOtpReader {
         try {
             this.gmailService = buildGmailService();
         } catch (Exception e) {
-            throw new RuntimeException("Failed to initialize Gmail API client — check GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN in .env", e);
+            throw new RuntimeException("Failed to initialize Gmail API client: " + e.getMessage(), e);
         }
     }
 
@@ -51,8 +51,13 @@ public class GmailOtpReader {
         String clientSecret = env.getOrDefault("GOOGLE_CLIENT_SECRET", System.getenv("GOOGLE_CLIENT_SECRET"));
         String refreshToken = env.getOrDefault("GOOGLE_REFRESH_TOKEN", System.getenv("GOOGLE_REFRESH_TOKEN"));
 
-        if (clientId == null || clientSecret == null || refreshToken == null) {
-            throw new IllegalStateException("GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN must be set via .env or environment variables");
+        StringBuilder missing = new StringBuilder();
+        if (clientId == null || clientId.isBlank()) missing.append("GOOGLE_CLIENT_ID ");
+        if (clientSecret == null || clientSecret.isBlank()) missing.append("GOOGLE_CLIENT_SECRET ");
+        if (refreshToken == null || refreshToken.isBlank()) missing.append("GOOGLE_REFRESH_TOKEN ");
+        if (missing.length() > 0) {
+            throw new IllegalStateException(missing.toString().trim()
+                    + " not set (or blank) via .env or environment variables");
         }
 
         NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();

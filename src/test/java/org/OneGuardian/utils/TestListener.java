@@ -32,10 +32,10 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         log.error("❌ TEST FAILED: " + result.getName());
-        log.error("Reason: " + result.getThrowable().getMessage());
+        log.error("Reason: " + describeWithCauses(result.getThrowable()));
 
         extentTest.get().log(Status.FAIL,
-                "Test Failed ❌ : " + result.getThrowable().getMessage());
+                "Test Failed ❌ : " + describeWithCauses(result.getThrowable()));
 
         try {
             String screenshotPath = ScreenshotUtility.captureScreenshot(result.getName());
@@ -44,6 +44,18 @@ public class TestListener implements ITestListener {
         } catch (Exception e) {
             log.error("Could not attach screenshot: " + e.getMessage());
         }
+    }
+
+    private static String describeWithCauses(Throwable t) {
+        StringBuilder sb = new StringBuilder(String.valueOf(t.getMessage()));
+        Throwable cause = t.getCause();
+        while (cause != null && cause != t) {
+            sb.append(" | Caused by: ").append(cause.getClass().getSimpleName())
+                    .append(": ").append(cause.getMessage());
+            t = cause;
+            cause = cause.getCause();
+        }
+        return sb.toString();
     }
 
     @Override
