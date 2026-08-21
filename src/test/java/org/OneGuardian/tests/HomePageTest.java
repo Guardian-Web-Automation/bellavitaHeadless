@@ -22,7 +22,7 @@ public class HomePageTest extends BaseTest {
         homePage.navigateTo();
 
         String actualTitle = homePage.getPageTitle();
-        String expectedTitle = "Bella Vita Luxury | Buy Best Perfumes Online";
+        String expectedTitle = "BellaVita 8th Birthday Sale Is Live | Buy 2 @ ₹799 or Buy 4 @ ₹1399 | Up to 60% OFF";
 
         // Assert.assertEquals → fails test immediately if values don't match
         Assert.assertEquals(actualTitle, expectedTitle,
