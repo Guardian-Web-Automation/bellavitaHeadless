@@ -1,5 +1,6 @@
 package org.OneGuardian.utils;
 
+import com.google.api.client.auth.oauth2.TokenResponseException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -67,7 +68,24 @@ public class GmailOtpReader {
                 .setClientSecrets(clientId, clientSecret)
                 .build()
                 .setRefreshToken(refreshToken);
-        credential.refreshToken();
+
+        try {
+            credential.refreshToken();
+        } catch (TokenResponseException e) {
+            // "invalid_grant" here almost always means GOOGLE_REFRESH_TOKEN is dead, not a code fault.
+            // Testing-mode OAuth apps expire refresh tokens after 7 days, so a daily CI job hits this
+            // roughly once a week. Surface a fix instead of a raw 400 so it is actionable at a glance.
+            String error = e.getDetails() != null ? e.getDetails().getError() : null;
+            if ("invalid_grant".equals(error)) {
+                throw new IllegalStateException(
+                        "GOOGLE_REFRESH_TOKEN is expired or revoked (Google returned invalid_grant). "
+                                + "Regenerate it and update the GitHub secret / local .env — run "
+                                + "GoogleRefreshTokenGenerator (mvn compile then run its main) to mint a new one. "
+                                + "To stop this recurring every ~7 days, set the OAuth consent screen "
+                                + "publishing status to 'In production' in Google Cloud Console.", e);
+            }
+            throw e;
+        }
 
         return new Gmail.Builder(httpTransport, JSON_FACTORY, credential)
                 .setApplicationName(APPLICATION_NAME)
