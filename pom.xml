@@ -90,6 +90,14 @@
             <version>v1-rev20240520-2.0.0</version>
         </dependency>
 
+        <!-- Local browser OAuth receiver - used only by GoogleRefreshTokenGenerator to mint a
+             fresh GOOGLE_REFRESH_TOKEN; not needed by the tests themselves at runtime -->
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client-jetty</artifactId>
+            <version>1.36.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -105,6 +113,14 @@
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
+            </plugin>
+
+            <!-- Lets GoogleRefreshTokenGenerator be run to mint a fresh GOOGLE_REFRESH_TOKEN:
+                 mvn exec:java -Dexec.mainClass=org.OneGuardian.utils.GoogleRefreshTokenGenerator -Dexec.classpathScope=test -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
             </plugin>
         </plugins>
     </build>

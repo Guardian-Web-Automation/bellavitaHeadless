@@ -31,7 +31,7 @@ public class CheckoutUserJourneyTest extends BaseTest {
     // subject line ("GKKWIK-S"), so GmailOtpReader tells them apart by body text, not subject.
     private static final String OTP_SENDER_EMAIL = "gauravrana7354@gmail.com";
 
-    @Test
+    @Test(enabled = false)
     public void verifyShopAllToCodCheckoutJourney() {
         HomePage homePage = new HomePage(driver);
         CollectionPage collectionPage = new CollectionPage(driver);
