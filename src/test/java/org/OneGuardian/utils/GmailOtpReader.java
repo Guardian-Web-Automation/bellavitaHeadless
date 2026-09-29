@@ -123,7 +123,10 @@ public class GmailOtpReader {
      */
     public String waitForOtp(String senderEmail, long searchAfterEpochSeconds, Duration timeout) {
         Instant deadline = Instant.now().plus(timeout);
-        String query = "from:" + senderEmail + " after:" + searchAfterEpochSeconds;
+        // "in:anywhere" so the search also covers Spam and Trash. The Gmail API's messages.list
+        // excludes SPAM/TRASH by default, so an OTP mail flagged as spam would otherwise never be
+        // found and the poll would time out even though the mail was delivered.
+        String query = "in:anywhere from:" + senderEmail + " after:" + searchAfterEpochSeconds;
 
         while (Instant.now().isBefore(deadline)) {
             try {
