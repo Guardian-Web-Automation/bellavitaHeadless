@@ -24,6 +24,14 @@ import java.time.Duration;
 public class LoginPage extends BasePage {
     protected static final Logger log = LogManager.getLogger(LoginPage.class);
 
+    // The KwikPass iframe is served from a third-party origin (pdp.gokwik.co) and its inner React app
+    // renders noticeably slower on the headless CI runners than in a headed local Chrome, so the modal
+    // steps get their own generous wait rather than reusing the shared 10s/20s BasePage timeout.
+    private static final Duration KWIKPASS_TIMEOUT = Duration.ofSeconds(30);
+
+    private static final By IFRAME_KP = By.cssSelector("iframe#iframe-kp");
+    private static final By PHONE_INPUT = By.id("phone-input");
+
     // Header account icon — opens the KwikPass login iframe when logged out, or routes to the
     // account dashboard when already logged in. Two nodes carry this locator (desktop + mobile
     // dock); PageFactory takes the first (desktop header), and safeClick's JS fallback covers the
@@ -56,8 +64,19 @@ public class LoginPage extends BasePage {
     /** Clicks the header Account icon and switches into the KwikPass login iframe. */
     public void openLoginModal() {
         safeClick(accountIcon);
-        switchToFrame(loginIframe);
-        waitForVisibility(mobileNumberInput);
+
+        WebDriverWait kwikPassWait = new WebDriverWait(driver, KWIKPASS_TIMEOUT);
+
+        // #iframe-kp is present in the DOM on every page but stays display:none until the login modal
+        // is actually activated. frameToBeAvailableAndSwitchToIt only checks the frame is *present*, so
+        // waiting for it to become *visible* first is what guarantees the modal has opened and its
+        // inner app has begun rendering — otherwise (notably in headless CI) we switch into an empty
+        // iframe and #phone-input is not there yet.
+        kwikPassWait.until(ExpectedConditions.visibilityOfElementLocated(IFRAME_KP));
+        kwikPassWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(IFRAME_KP));
+
+        // Now inside the iframe: wait (without swallowing) for the phone field to actually render.
+        kwikPassWait.until(ExpectedConditions.visibilityOfElementLocated(PHONE_INPUT));
         log.info("Opened KwikPass login modal");
     }
 
