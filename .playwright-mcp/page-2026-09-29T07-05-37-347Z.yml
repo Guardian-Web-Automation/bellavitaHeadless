@@ -1,0 +1,171 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - button "Previous announcement" [ref=e4] [cursor=pointer]
+    - link "Free Shipping on Orders Above ₹499" [ref=e385] [cursor=pointer]:
+      - /url: /collections/all
+    - button "Next announcement" [ref=e9] [cursor=pointer]
+  - banner [ref=e386]:
+    - generic [ref=e389]:
+      - generic [ref=e390]:
+        - search [ref=e392]:
+          - searchbox "Search" [ref=e398]
+        - link [ref=e400] [cursor=pointer]:
+          - /url: /
+          - img "Bella Vita Logo" [ref=e401]
+        - generic [ref=e402]:
+          - link "Account" [ref=e403] [cursor=pointer]:
+            - /url: /account
+          - button "Cart" [ref=e408] [cursor=pointer]
+      - navigation [ref=e411]:
+        - generic [ref=e412]:
+          - link "Crazy Deals" [ref=e413] [cursor=pointer]:
+            - /url: /pages/build-a-box
+          - link "Shop All" [ref=e414] [cursor=pointer]:
+            - /url: /collections/all-products
+          - link "BestSellers" [ref=e415] [cursor=pointer]:
+            - /url: /collections/best-sellers
+          - link "Perfumes" [ref=e417] [cursor=pointer]:
+            - /url: /collections/all-perfumes
+          - link "Bath & Body" [ref=e419] [cursor=pointer]:
+            - /url: /collections/bath-body
+          - link "Little Luxuries" [ref=e420] [cursor=pointer]:
+            - /url: /collections/little-luxuries
+          - link "New Arrivals" [ref=e421] [cursor=pointer]:
+            - /url: /collections/new-arrivals
+  - main [ref=e12]:
+    - generic [ref=e423]:
+      - generic [ref=e424]:
+        - heading "Welcome, Gourav" [level=1] [ref=e425]
+        - button "Sign Out" [ref=e426] [cursor=pointer]
+      - generic [ref=e427]:
+        - button "Profile" [ref=e428] [cursor=pointer]
+        - button "Addresses" [ref=e429] [cursor=pointer]
+        - button "Orders" [ref=e430] [cursor=pointer]
+      - generic [ref=e432]:
+        - heading "Profile Details" [level=2] [ref=e433]
+        - generic [ref=e434]:
+          - generic [ref=e435]:
+            - generic [ref=e436]:
+              - generic [ref=e437]: First Name
+              - textbox "First Name" [ref=e438]: Gourav
+            - generic [ref=e439]:
+              - generic [ref=e440]: Last Name
+              - textbox "Last Name" [ref=e441]: Kumar
+            - generic [ref=e442]:
+              - generic [ref=e443]: Email
+              - textbox "Email" [ref=e444]: gourav.kumar@oneguardian.in
+            - generic [ref=e445]:
+              - generic [ref=e446]: Contact Number
+              - textbox "Contact Number" [ref=e447]: "+919729222530"
+          - button "Save Changes" [ref=e448] [cursor=pointer]
+  - contentinfo [ref=e289]:
+    - generic [ref=e290]:
+      - generic [ref=e291]:
+        - heading "BESTSELLERS" [level=4] [ref=e292]
+        - list [ref=e293]:
+          - listitem [ref=e294]:
+            - link "Ultimate Perfume Box" [ref=e295] [cursor=pointer]:
+              - /url: /pages/build-a-box/ultimate-perfume-box
+          - listitem [ref=e296]:
+            - link "Perfume Gift Set For Men" [ref=e297] [cursor=pointer]:
+              - /url: /products/luxury-perfume-gift-set-for-men-4x20-ml
+          - listitem [ref=e298]:
+            - link "Perfume Gift Set For Women" [ref=e299] [cursor=pointer]:
+              - /url: /products/luxury-perfumes-gift-set-for-women-4x20-ml
+          - listitem [ref=e300]:
+            - link "Under Eye Cream for Dark Circles" [ref=e301] [cursor=pointer]:
+              - /url: /products/eyelift-under-eye-cream-for-dark-circles-and-wrinkles
+          - listitem [ref=e302]:
+            - link "Perfume For Men" [ref=e303] [cursor=pointer]:
+              - /url: /collections/perfumes-for-him
+          - listitem [ref=e304]:
+            - link "Perfume For Women" [ref=e305] [cursor=pointer]:
+              - /url: /collections/perfumes-for-her
+          - listitem [ref=e306]:
+            - link "Unisex Perfume" [ref=e307] [cursor=pointer]:
+              - /url: /collections/unisex-perfumes-men-women
+      - generic [ref=e308]:
+        - heading "INFORMATION" [level=4] [ref=e309]
+        - list [ref=e310]:
+          - listitem [ref=e311]:
+            - link "Blogs" [ref=e312] [cursor=pointer]:
+              - /url: /blogs/perfumes
+          - listitem [ref=e313]:
+            - link "Terms & Conditions" [ref=e314] [cursor=pointer]:
+              - /url: /pages/terms-and-conditions
+          - listitem [ref=e315]:
+            - link "Privacy Policy" [ref=e316] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+          - listitem [ref=e317]:
+            - link "Refund and Return" [ref=e318] [cursor=pointer]:
+              - /url: /pages/refund-and-return
+          - listitem [ref=e319]:
+            - link "Shipping Policy" [ref=e320] [cursor=pointer]:
+              - /url: /pages/shipping-and-delivery
+      - generic [ref=e321]:
+        - heading "SUPPORT" [level=4] [ref=e322]
+        - list [ref=e323]:
+          - listitem [ref=e324]:
+            - link "About Us" [ref=e325] [cursor=pointer]:
+              - /url: /pages/about-us
+          - listitem [ref=e326]:
+            - link "Contact Us" [ref=e327] [cursor=pointer]:
+              - /url: /pages/contact-us
+          - listitem [ref=e328]:
+            - link "Order Tracking" [ref=e329] [cursor=pointer]:
+              - /url: https://bellavita.shiprocket.co/tracking
+          - listitem [ref=e330]:
+            - link "All Products" [ref=e331] [cursor=pointer]:
+              - /url: /collections/all
+          - listitem [ref=e332]:
+            - link "FAQ" [ref=e333] [cursor=pointer]:
+              - /url: /pages/frequently-asked-questions
+      - generic [ref=e334]:
+        - heading "CONTACT US" [level=4] [ref=e335]
+        - paragraph [ref=e336]: "Office Location: Plot no. 417, Udyog Vihar Phase III, Gurgaon, Haryana, India"
+        - link "Contact Us on WhatsApp" [ref=e337] [cursor=pointer]:
+          - /url: https://wa.me/917899209461?text=Hey,%20Let's%20chat%20about%20Bella%20Vita%20Luxury.
+        - paragraph [ref=e338]: +91-9810154380
+        - paragraph [ref=e339]: "Timing: 10:00 AM to 7:00 PM, Monday to Sunday"
+    - generic [ref=e341]:
+      - link "Facebook" [ref=e342] [cursor=pointer]:
+        - /url: https://www.facebook.com/bellavitaorganic
+      - link "X" [ref=e345] [cursor=pointer]:
+        - /url: https://x.com/bellavita_org
+      - link "Pinterest" [ref=e348] [cursor=pointer]:
+        - /url: https://in.pinterest.com/BellaVitaOrg
+      - link "Instagram" [ref=e351] [cursor=pointer]:
+        - /url: https://www.instagram.com/bellavita.official
+      - link "YouTube" [ref=e354] [cursor=pointer]:
+        - /url: https://www.youtube.com/c/BellaVitaOrganicIndia
+    - generic [ref=e357]:
+      - paragraph [ref=e358]:
+        - text: © 2026,
+        - link "Bella Vita Organic (IDAM Natural Wellness Pvt. Ltd.)" [ref=e359] [cursor=pointer]:
+          - /url: /
+        - text: .
+      - list [ref=e360]:
+        - listitem [ref=e361]:
+          - text: Please be aware that
+          - generic [ref=e362]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=e363]:
+          - generic [ref=e364]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=e365]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=e366]: Stay safe!
+    - generic [ref=e367]:
+      - heading "Scam Alert" [level=5] [ref=e368]
+      - paragraph [ref=e373]: We have noticed a rise in fraudulent activities through calls, SMS, WhatsApp messages, emails, and other mediums.
+      - list [ref=e374]:
+        - listitem [ref=e375]:
+          - text: Please be aware that
+          - generic [ref=e376]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=e377]:
+          - generic [ref=e378]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=e379]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=e380]: Stay safe!
+  - link "Contact us on WhatsApp" [ref=e382] [cursor=pointer]:
+    - /url: https://wa.me/917899209461?text=Hey%2C%20Let's%20chat%20about%20Bella%20Vita%20Luxury.

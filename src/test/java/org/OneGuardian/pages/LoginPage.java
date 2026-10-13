@@ -4,6 +4,7 @@ import org.OneGuardian.base.BasePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,14 @@ import java.time.Duration;
  */
 public class LoginPage extends BasePage {
     protected static final Logger log = LogManager.getLogger(LoginPage.class);
+
+    // The KwikPass iframe is served from a third-party origin (pdp.gokwik.co) and its inner React app
+    // renders noticeably slower on the headless CI runners than in a headed local Chrome, so the modal
+    // steps get their own generous wait rather than reusing the shared 10s/20s BasePage timeout.
+    private static final Duration KWIKPASS_TIMEOUT = Duration.ofSeconds(30);
+
+    private static final By IFRAME_KP = By.cssSelector("iframe#iframe-kp");
+    private static final By PHONE_INPUT = By.id("phone-input");
 
     // Header account icon — opens the KwikPass login iframe when logged out, or routes to the
     // account dashboard when already logged in. Two nodes carry this locator (desktop + mobile
@@ -53,20 +62,52 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    /** Clicks the header Account icon and switches into the KwikPass login iframe. */
+    /** Clicks the header Account icon and opens the KwikPass login iframe, leaving the driver inside it. */
     public void openLoginModal() {
         safeClick(accountIcon);
-        switchToFrame(loginIframe);
-        waitForVisibility(mobileNumberInput);
+        switchIntoKwikPassAndWaitForPhoneInput();
         log.info("Opened KwikPass login modal");
     }
 
-    /** Enters the mobile number and submits it to trigger the OTP. Must already be inside the iframe. */
+    /**
+     * Enters the mobile number and submits it to trigger the OTP.
+     * <p>
+     * Re-establishes the iframe context and re-locates the phone field right before typing rather
+     * than trusting the element {@link #openLoginModal()} already waited for: the KwikPass React app
+     * re-renders (and sometimes reloads its iframe document) shortly after first paint, so on slower
+     * headless CI runners #phone-input can be transiently gone or its frame handle stale by the time
+     * we interact with it — which is exactly the "no such element: #phone-input" failure seen in CI.
+     * Re-waiting here closes that gap; the stale-element retry covers a re-render mid-interaction.
+     */
     public void submitMobileNumber(String phoneNumber) {
-        mobileNumberInput.clear();
-        mobileNumberInput.sendKeys(phoneNumber);
+        WebElement phoneInput = switchIntoKwikPassAndWaitForPhoneInput();
+        try {
+            phoneInput.clear();
+            phoneInput.sendKeys(phoneNumber);
+        } catch (StaleElementReferenceException e) {
+            log.warn("Phone input went stale while typing, re-locating and retrying");
+            phoneInput = switchIntoKwikPassAndWaitForPhoneInput();
+            phoneInput.clear();
+            phoneInput.sendKeys(phoneNumber);
+        }
         safeClick(submitButton);
         log.info("Submitted mobile number for OTP");
+    }
+
+    /**
+     * Ensures the driver is inside the KwikPass iframe and returns the visible phone input.
+     * <p>
+     * Switches back to default content first so it is safe to call even if a prior frame handle went
+     * stale after the iframe reloaded; waits for the iframe to be visible (it ships in the DOM as
+     * display:none until the modal activates), switches into it, then waits for #phone-input to
+     * actually render. Reused by {@link #openLoginModal()} and {@link #submitMobileNumber(String)}.
+     */
+    private WebElement switchIntoKwikPassAndWaitForPhoneInput() {
+        WebDriverWait kwikPassWait = new WebDriverWait(driver, KWIKPASS_TIMEOUT);
+        driver.switchTo().defaultContent();
+        kwikPassWait.until(ExpectedConditions.visibilityOfElementLocated(IFRAME_KP));
+        kwikPassWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(IFRAME_KP));
+        return kwikPassWait.until(ExpectedConditions.visibilityOfElementLocated(PHONE_INPUT));
     }
 
     /** True once the OTP entry screen is shown (the first OTP box is visible). */
