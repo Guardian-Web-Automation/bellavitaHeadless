@@ -4,7 +4,9 @@ import org.OneGuardian.base.BasePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 /**
  * Storefront account login via GoKwik KwikPass (phone number -> OTP).
@@ -32,6 +35,7 @@ public class LoginPage extends BasePage {
 
     private static final By IFRAME_KP = By.cssSelector("iframe#iframe-kp");
     private static final By PHONE_INPUT = By.id("phone-input");
+    private static final By ACCOUNT_ICON = By.cssSelector("a.header-action-btn[aria-label='Account']");
 
     // Header account icon — opens the KwikPass login iframe when logged out, or routes to the
     // account dashboard when already logged in. Two nodes carry this locator (desktop + mobile
@@ -64,9 +68,58 @@ public class LoginPage extends BasePage {
 
     /** Clicks the header Account icon and opens the KwikPass login iframe, leaving the driver inside it. */
     public void openLoginModal() {
-        safeClick(accountIcon);
+        openKwikPassModalWithRetry(3);
         switchIntoKwikPassAndWaitForPhoneInput();
         log.info("Opened KwikPass login modal");
+    }
+
+    /**
+     * Clicks the Account icon and confirms the KwikPass iframe actually opened, retrying the click if
+     * it did not. On headless CI the single up-front click sometimes does not open the modal (the
+     * desktop header icon can be laid out off-screen / behind an overlay, or the click lands before the
+     * header's JS handler is wired), which surfaced as a 30s "iframe#iframe-kp not visible" timeout.
+     * Each attempt clicks a *visible* Account node and waits a short window for the iframe to appear.
+     */
+    private void openKwikPassModalWithRetry(int attempts) {
+        WebDriverWait perAttemptWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        for (int attempt = 1; attempt <= attempts; attempt++) {
+            clickVisibleAccountIcon();
+            try {
+                perAttemptWait.until(ExpectedConditions.visibilityOfElementLocated(IFRAME_KP));
+                return; // modal is open
+            } catch (TimeoutException e) {
+                log.warn("KwikPass iframe not visible after Account-icon click (attempt {}/{})", attempt, attempts);
+            }
+        }
+        // Exhausted the quick retries — do one final full-length wait so a genuine failure is reported
+        // against the generous KwikPass timeout rather than a short one.
+        new WebDriverWait(driver, KWIKPASS_TIMEOUT)
+                .until(ExpectedConditions.visibilityOfElementLocated(IFRAME_KP));
+    }
+
+    /**
+     * Clicks the first *displayed* Account icon. The locator matches two nodes (desktop header + mobile
+     * dock) and only one is visible per layout; PageFactory's blind "first match" can pick the hidden
+     * one, so pick the visible node explicitly, falling back to a JS click on the first present node.
+     */
+    private void clickVisibleAccountIcon() {
+        List<WebElement> icons = driver.findElements(ACCOUNT_ICON);
+        for (WebElement icon : icons) {
+            try {
+                if (icon.isDisplayed()) {
+                    safeClick(icon);
+                    return;
+                }
+            } catch (StaleElementReferenceException ignored) {
+                // header re-rendered between lookup and check — fall through to next candidate
+            }
+        }
+        if (!icons.isEmpty()) {
+            log.warn("No Account icon reported visible; JS-clicking the first present node");
+            jsClick(icons.get(0));
+            return;
+        }
+        throw new NoSuchElementException("Account icon (" + ACCOUNT_ICON + ") not found in header");
     }
 
     /**

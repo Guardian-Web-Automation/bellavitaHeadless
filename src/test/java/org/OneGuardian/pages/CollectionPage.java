@@ -192,19 +192,22 @@ public class CollectionPage extends BasePage {
 
     // filterValue → "For Him", "Fragrance", "Perfume", "Bergamot" etc.
     public void selectFilterValue(String filterValue) {
-        String xpath = "//label[@class='filter-value-item']//span[1][contains(text(),'" + filterValue + "')]//..//input[@class='filter-value-checkbox']";
+        // Match the filter row whose *visible text* contains the value, then the checkbox inside that
+        // same row. The previous locator keyed off span[1]'s direct text node and the parent axis,
+        // which broke for rows whose label text isn't in the first span (e.g. "Attar") — a consistent
+        // NoSuchElement. normalize-space(.) at the label level tolerates icon/count spans and nesting.
+        By valueCheckbox = By.xpath(
+                "//label[@class='filter-value-item'][contains(normalize-space(.),'" + filterValue + "')]"
+                        + "//input[@class='filter-value-checkbox']");
 
-        WebElement checkbox = driver.findElement(By.xpath(xpath));
+        // Wait for the value to actually render in the sub-drawer rather than failing instantly.
+        WebElement checkbox = new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.presenceOfElementLocated(valueCheckbox));
 
         scrollToElement(checkbox);
 
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-        }
-
         if (!checkbox.isSelected()) {
-            checkbox.click();
+            safeClick(checkbox);
             log.info("Selected filter value: " + filterValue);
         } else {
             log.info("Filter value already selected: " + filterValue);
