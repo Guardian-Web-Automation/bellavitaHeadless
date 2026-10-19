@@ -42,7 +42,15 @@ public class BaseTest {
                 .setLevel(java.util.logging.Level.SEVERE);
 
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        // In --headless=new on a displayless CI runner, window().maximize() can shrink the window to a
+        // small default, overriding --window-size and collapsing the storefront header into its mobile
+        // layout (which hides the desktop Account icon the login flow clicks). Pin an explicit desktop
+        // viewport in headless and only maximize for real headed runs.
+        if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
+            driver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1080));
+        } else {
+            driver.manage().window().maximize();
+        }
         driver.manage().timeouts()
                 .implicitlyWait(java.time.Duration.ofSeconds(10));
 
