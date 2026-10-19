@@ -73,6 +73,30 @@ public class ProductDetailPageTest extends BaseTest {
                 "Cart did not contain the product added from the PDP. Actual: " + cartPage.getCartItemName());
     }
 
+    // PDP-05
+    @Test(enabled = true)
+    public void verifyProductInfoAccordionsExpand() {
+        driver.get(PRODUCT_URL);
+        ProductDetailPage pdp = new ProductDetailPage(driver);
+
+        for (String section : new String[]{"KEY BENEFITS", "HOW TO USE", "PERFUME NOTES", "ALL INGREDIENTS"}) {
+            pdp.clickAccordion(section);
+            Assert.assertTrue(pdp.isAccordionContentVisible(section),
+                    "Accordion content did not expand for section: " + section);
+            log.info("Accordion expanded: " + section);
+        }
+    }
+
+    // PDP-07
+    @Test(enabled = true)
+    public void verifyReviewsSectionLoads() {
+        driver.get(PRODUCT_URL);
+        ProductDetailPage pdp = new ProductDetailPage(driver);
+
+        Assert.assertTrue(pdp.isReviewWidgetPresent(), "Reviews widget did not render on the PDP");
+        Assert.assertTrue(pdp.isRatingStarsPresent(), "Rating stars were not displayed on the PDP");
+    }
+
     // PDP-04
     @Test(enabled = true)
     public void verifyAddToCartWithQuantityTwo() {

@@ -66,4 +66,17 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(loginPage.isOtpErrorDisplayed(),
                 "Expected an 'OTP verification failed' error for an invalid OTP");
     }
+
+    // ACCT-04 — an invalid (too-short) mobile number must not trigger an OTP.
+    @Test(enabled = true, priority = 3)
+    public void verifyLoginBlockedForInvalidMobile() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigateTo();
+
+        loginPage.openLoginModal();
+        loginPage.submitMobileNumber("12345");
+
+        Assert.assertFalse(loginPage.didOtpScreenAppear(8),
+                "OTP screen should not appear for an invalid (too-short) mobile number");
+    }
 }

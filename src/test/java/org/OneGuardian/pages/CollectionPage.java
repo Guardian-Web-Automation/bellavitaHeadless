@@ -226,6 +226,20 @@ public class CollectionPage extends BasePage {
         }
     }
 
+    /**
+     * Sets the From/To price inputs in the Price sub-drawer and applies. The Price group must already
+     * be open (clickFilterOption("Price")). Values are typed so the storefront's React state updates.
+     */
+    public void applyPriceFilter(String min, String max) {
+        List<WebElement> priceInputs = driver.findElements(By.cssSelector("input.filter-price-input"));
+        priceInputs.get(0).clear();
+        priceInputs.get(0).sendKeys(min);
+        priceInputs.get(1).clear();
+        priceInputs.get(1).sendKeys(max);
+        log.info("Set price range " + min + "–" + max);
+        clickApplyFilter();
+    }
+
     public void clickApplyFilter() {
         safeClick(applyFilterButton);
         log.info("Clicked Apply filter");

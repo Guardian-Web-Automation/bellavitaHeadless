@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 public class ProductDetailPage extends BasePage {
     protected static final Logger log = LogManager.getLogger(ProductDetailPage.class);
 
@@ -156,6 +158,50 @@ public class ProductDetailPage extends BasePage {
 
     public boolean hasRelatedProducts() {
         return !driver.findElements(relatedProductLink).isEmpty();
+    }
+
+    // =====================
+    // Info accordions (PDP-05)
+    // =====================
+
+    /** Clicks a product-info accordion header (e.g. "KEY BENEFITS", "PERFUME NOTES"). */
+    public void clickAccordion(String sectionName) {
+        WebElement header = driver.findElement(
+                By.xpath("//button[contains(normalize-space(),'" + sectionName + "')]"));
+        safeClick(header);
+    }
+
+    /**
+     * True when the accordion's content panel (the div immediately after its header button) is
+     * expanded and shows text. The panel is collapsed to height 0 until its header is clicked.
+     */
+    public boolean isAccordionContentVisible(String sectionName) {
+        try {
+            WebElement panel = driver.findElement(By.xpath(
+                    "//button[contains(normalize-space(),'" + sectionName + "')]/following-sibling::div[1]"));
+            wait.until(ExpectedConditions.visibilityOf(panel));
+            return panel.isDisplayed() && !panel.getText().trim().isEmpty();
+        } catch (Exception e) {
+            log.error("Accordion content not visible for '" + sectionName + "': " + e.getMessage());
+            return false;
+        }
+    }
+
+    // =====================
+    // Reviews (PDP-07)
+    // =====================
+
+    // Filled rating stars from the Judge.me widget.
+    @FindBy(css = ".jdgm-star.jdgm--on")
+    private List<WebElement> filledRatingStars;
+
+    public boolean isRatingStarsPresent() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElements(filledRatingStars));
+        } catch (Exception ignored) {
+            // Stars may already be present; fall through to the size check.
+        }
+        return !filledRatingStars.isEmpty();
     }
 
     // =====================

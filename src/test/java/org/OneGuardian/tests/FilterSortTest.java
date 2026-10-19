@@ -155,6 +155,29 @@ public class FilterSortTest extends BaseTest {
                         + ", after=" + collectionPage.getVisibleProductCount() + ")");
     }
 
+    // ─────────────────────────────────────────
+    // COLL-05 / COLL-08 — Price range filter applies
+    // ─────────────────────────────────────────
+    @Test(enabled = true)
+    public void verifyPriceRangeFilter() {
+        log.info("TEST: Verifying price range filter...");
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+
+        CollectionPage collectionPage = new CollectionPage(driver);
+        collectionPage.navigateToShopAll();
+
+        collectionPage.clickFilterButton();
+        collectionPage.clickFilterOption("Price");
+        collectionPage.applyPriceFilter("200", "600");
+
+        Assert.assertTrue(collectionPage.getAppliedFilterCount() >= 1,
+                "A price filter chip should appear after applying a range");
+        Assert.assertTrue(
+                collectionPage.getAppliedFilterTexts().toString().toLowerCase().contains("price"),
+                "Applied chip should reference Price. Actual: " + collectionPage.getAppliedFilterTexts());
+    }
+
     @DataProvider(name = "sortAndFilterCombinedData")
     public Object[][] sortAndFilterData() {
         return new Object[][]{
