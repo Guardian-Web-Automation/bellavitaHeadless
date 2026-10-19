@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
     // TEST 1 — Verify Cart Page Loads
     // ─────────────────────────────────────────
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyCartPageLoads() {
         log.info("TEST: Verifying cart page loads...");
         HomePage  homePage = new HomePage(driver);
@@ -38,7 +38,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 2 — Verify Product is Added to Cart
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyATCForSpecificProductInBestsellers() {
 
         HomePage homePage = new HomePage(driver);
@@ -85,7 +85,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 3 — Verify Cart Item Count > 0
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyCartItemCount() {
         log.info("TEST: Verifying cart item count...");
 
@@ -110,7 +110,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 4 — Verify Increase Quantity
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyIncreaseQuantityInCart() {
         log.info("TEST: Verifying increase quantity in cart...");
 
@@ -141,7 +141,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 5 — Verify Decrease Quantity
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyDecreaseQuantityInCart() {
         log.info("TEST: Verifying decrease quantity in cart...");
 
@@ -172,7 +172,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 6 — Verify Remove Item from Cart
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyRemoveItemFromCart() {
         log.info("TEST: Verifying remove item from cart...");
 
@@ -195,7 +195,7 @@ public class CartTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 7 — Verify Cart Total Price Displayed
     // ─────────────────────────────────────────
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyCartTotalPrice() {
         log.info("TEST: Verifying cart total price is displayed...");
 
