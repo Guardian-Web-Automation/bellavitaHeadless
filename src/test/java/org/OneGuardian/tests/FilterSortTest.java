@@ -19,7 +19,7 @@ public class FilterSortTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 1 — Verify Sort by Price Low to High
     // ─────────────────────────────────────────
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifySortByPriceLowToHigh() {
         log.info("TEST: Verifying sort by price low to high...");
         HomePage homePage = new HomePage(driver);
@@ -41,7 +41,7 @@ public class FilterSortTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 2 — Verify Sort by Price High to Low
     // ─────────────────────────────────────────
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifySortByPriceHighToLow() {
         log.info("TEST: Verifying sort by price high to low...");
         HomePage homePage = new HomePage(driver);
@@ -113,7 +113,7 @@ public class FilterSortTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "sortAndFilterCombinedData", enabled = false)
+    @Test(dataProvider = "sortAndFilterCombinedData", enabled = true)
     public void verifySortAndFilterCombined(String filterOption, String filterValue, String sortOption, String sortUrlParam, String PriceSortOrder) {
         log.info("TEST: Verifying sort + filter combined...");
         HomePage homePage = new HomePage(driver);

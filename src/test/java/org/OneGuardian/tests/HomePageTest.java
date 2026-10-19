@@ -15,7 +15,7 @@ public class HomePageTest extends BaseTest {
     private static final Logger log = LogManager.getLogger(HomePageTest.class);
 
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyHomePageTitle() {
         log.info("TEST: Verifying homepage title...");
         HomePage homePage = new HomePage(driver);
@@ -30,7 +30,7 @@ public class HomePageTest extends BaseTest {
         log.info("Homepage title verified successfully ✅");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyHomePageUrl() {
         log.info("TEST: Verifying homepage URL...");
         HomePage homePage = new HomePage(driver);
@@ -44,7 +44,7 @@ public class HomePageTest extends BaseTest {
         log.info("Homepage URL verified successfully ✅");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyLogoIsDisplayed() {
         log.info("TEST: Verifying logo visibility...");
         HomePage homePage = new HomePage(driver);
@@ -54,7 +54,7 @@ public class HomePageTest extends BaseTest {
                 "Logo is not visible on the homepage!");
         log.info("Logo is visible on homepage ✅");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyNavigateToFooter() {
         log.info("TEST: Verifying navigating to  footer...");
         HomePage homePage = new HomePage(driver);
@@ -66,7 +66,7 @@ public class HomePageTest extends BaseTest {
         log.info("Footer is visible on homepage ✅");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyBestsellersLink() {
         log.info("TEST: Verifying Bestsellers link...");
         HomePage homePage = new HomePage(driver);
@@ -82,7 +82,7 @@ public class HomePageTest extends BaseTest {
         log.info("Bestsellers link verified successfully ✅");
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void verifyNewArrivalsLink() {
         log.info("TEST: Verifying New Arrivals link...");
         HomePage homePage = new HomePage(driver);
@@ -111,7 +111,7 @@ public class HomePageTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "headerLinksData", enabled = false)
+    @Test(dataProvider = "headerLinksData", enabled = true)
     public void verifyHeaderLinks(String collectionName, String expectedHeader, String expectedUrl) {
         log.info("TEST: Verifying Header link at HomePage...");
         HomePage homePage = new HomePage(driver);
@@ -137,7 +137,7 @@ public class HomePageTest extends BaseTest {
                 {"Gift Sets", "All Gift Sets", "all-gift-sets"}
         };
     }
-    @Test(dataProvider = "luxuryCategoriesData", enabled = false)
+    @Test(dataProvider = "luxuryCategoriesData", enabled = true)
     public void verifyCollectionUnderLuxuryCategories(String collectionName,String expectedHeader, String expectedUrl) {
         log.info("TEST: Verifying Luxury Perfumes link at Luxury Categories at home page...");
         HomePage homePage = new HomePage(driver);
@@ -168,7 +168,7 @@ public class HomePageTest extends BaseTest {
 
         };
     }
-    @Test(dataProvider = "footerLinksData", enabled = false)
+    @Test(dataProvider = "footerLinksData", enabled = true)
     public void verifyFooterLinks(String CategiryName, String expectedUrl) {
         log.info("TEST: Verifying Footer link  at home page...");
         HomePage homePage = new HomePage(driver);
