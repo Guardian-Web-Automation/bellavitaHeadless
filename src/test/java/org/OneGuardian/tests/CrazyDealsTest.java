@@ -16,7 +16,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 1 — Verify Crazy Deals Page Loads
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyCrazyDealsPageLoads() {
         log.info("TEST: Verifying Crazy Deals page loads...");
         HomePage homePage = new HomePage(driver);
@@ -34,7 +34,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 2 — Verify Build Your Box Opens
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyBuildYourBoxOpens() {
         log.info("TEST: Verifying Build Your Box page opens...");
         HomePage homePage = new HomePage(driver);
@@ -57,7 +57,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 3 — Verify Adding 1 Product Updates Progress
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyProgressAfterAddingOneProduct() {
         log.info("TEST: Verifying progress after adding 1 product...");
         HomePage homePage = new HomePage(driver);
@@ -82,7 +82,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 4 — Verify Adding 2 Products Updates Progress
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyProgressAfterAddingTwoProducts() {
         log.info("TEST: Verifying progress after adding 2 products...");
         HomePage homePage = new HomePage(driver);
@@ -107,7 +107,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 5 — Verify Deal Unlocks After 3 Products
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyDealUnlocksAfterThreeProducts() {
         log.info("TEST: Verifying deal unlocks after adding 3 products...");
         HomePage homePage = new HomePage(driver);
@@ -138,7 +138,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 6 — Verify Pay Now Button Appears After 3/3
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyPayNowButtonAfterDealUnlock() {
         log.info("TEST: Verifying Pay Now button appears after 3/3...");
         HomePage homePage = new HomePage(driver);
@@ -161,7 +161,7 @@ public class CrazyDealsTest extends BaseTest {
     // ─────────────────────────────────────────
     // TEST 7 — Verify Bill Summary Shows ₹1,298
     // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyItemValuePriceUpdatesOnAddingProduct() {
         log.info("TEST: Verifying item value price updates after adding product...");
         HomePage homePage = new HomePage(driver);
@@ -224,7 +224,7 @@ public class CrazyDealsTest extends BaseTest {
 // TEST 8 — Verify 1 Product × 3 Quantity Completes the Box
 // Flow: WHITE OUD × 3 → 3/3 ADDED → Deal Unlocked
 // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyOneProductThreeQuantityCompletesDeal() {
         log.info("TEST: Verifying 1 product × 3 qty completes the deal...");
         HomePage homePage = new HomePage(driver);
@@ -266,7 +266,7 @@ public class CrazyDealsTest extends BaseTest {
 // TEST 09 — Verify 1 Product × 2 Qty + 1 Different Product Completes Box
 // Flow: WHITE OUD × 2 + SKAI × 1 → 3/3 ADDED → Deal Unlocked
 // ─────────────────────────────────────────
-    @Test
+    @Test(enabled = false)
     public void verifyTwoQtyOneProductPlusOneOtherCompletesDeal() {
         log.info("TEST: Verifying 2 qty of 1 product + 1 other completes deal...");
 

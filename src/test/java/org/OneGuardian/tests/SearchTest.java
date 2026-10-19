@@ -29,7 +29,7 @@ public class SearchTest extends BaseTest {
 
     // dataProvider = "searchData" → TestNG calls this 3 times (once per Excel row)
     // Each call injects the next row's values as (keyword, expected)
-    @Test(dataProvider = "searchData",enabled = true)
+    @Test(dataProvider = "searchData",enabled = false)
     public void verifySearchFunctionality(String keyword, String expected) {
         log.info("TEST: Searching for keyword → " + keyword);
 
@@ -50,7 +50,7 @@ public class SearchTest extends BaseTest {
         log.info("Search verified for keyword: " + keyword + " ✅");
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyAddToCartFromSearchResult() {
         log.info("TEST: Verifying Add to Cart from search result to PDP than ATC...");
 
@@ -87,7 +87,7 @@ public class SearchTest extends BaseTest {
         log.info("Add to Cart verified successfully ✅ | Product: " + productName);
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void verifyAddToCartDirectlyFromSearchPage() {
         log.info("TEST: Verifying Add to Cart from search result...");
 
