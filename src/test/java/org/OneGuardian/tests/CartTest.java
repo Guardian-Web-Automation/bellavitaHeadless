@@ -193,6 +193,33 @@ public class CartTest extends BaseTest {
     }
 
     // ─────────────────────────────────────────
+    // CART-09 — Cart persists across page navigation
+    // ─────────────────────────────────────────
+    @Test(enabled = true)
+    public void verifyCartPersistsAcrossNavigation() {
+        log.info("TEST: Verifying cart persists across navigation...");
+
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+        homePage.navigateToBestsellers();
+        homePage.clickATCByProductName("WHITE OUD");
+
+        CartPage cartPage = new CartPage(driver);
+        cartPage.closeCart();
+        String countAfterAdd = cartPage.getCartItemCount();
+        log.info("Cart count after add: " + countAfterAdd);
+        Assert.assertTrue(Integer.parseInt(countAfterAdd) > 0, "Product was not added before navigation");
+
+        // Navigate away and reload the home page (full navigation, not SPA state).
+        homePage.navigateTo();
+
+        // On a fresh load the header cart badge hydrates asynchronously from the persisted cart
+        // cookie, so poll it until it reports a positive count rather than reading it once too early.
+        Assert.assertTrue(cartPage.waitForCartCountPositive(),
+                "Cart should still hold the item after navigating away and back");
+    }
+
+    // ─────────────────────────────────────────
     // TEST 7 — Verify Cart Total Price Displayed
     // ─────────────────────────────────────────
     @Test(enabled = true)

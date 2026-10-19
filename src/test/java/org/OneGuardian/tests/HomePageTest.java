@@ -184,4 +184,37 @@ public class HomePageTest extends BaseTest {
         log.info("The "+CategiryName +" link verified successfully for footer✅");
     }
 
+    // ─────────────────────────────────────────
+    // NAV-02 / NAV-03 — Mega-menu subcategory navigation (Perfumes + Bath & Body)
+    // ─────────────────────────────────────────
+    @DataProvider(name = "subCategoryNavData")
+    public Object[][] subCategoryNavData() {
+        return new Object[][] {
+                {"Men", "perfumes-for-men"},
+                {"Women", "perfumes-for-women"},
+                {"Unisex", "unisex-perfumes"},
+                {"Oud Collection", "experience-our-oud-collection"},
+                {"Attars", "attars"},
+                {"Shower Gel", "shower-gel"},
+                {"Body Mist", "body-mist"},
+                {"Travel Kit", "travel-kit"},
+                {"Body lotion", "body-lotion"}
+        };
+    }
+
+    @Test(dataProvider = "subCategoryNavData", enabled = true)
+    public void verifySubCategoryNavigation(String navText, String expectedUrlFragment) {
+        log.info("TEST: Verifying sub-category nav → " + navText);
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+
+        homePage.navigateToHeaderLink(navText, expectedUrlFragment);
+
+        String actualUrl = homePage.getCurrentUrl();
+        Assert.assertTrue(actualUrl.contains(expectedUrlFragment),
+                "Sub-category '" + navText + "' did not navigate to /" + expectedUrlFragment
+                        + ". Actual: " + actualUrl);
+        log.info("Sub-category '" + navText + "' navigated correctly ✅");
+    }
+
 }

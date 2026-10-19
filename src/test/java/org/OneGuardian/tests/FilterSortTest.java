@@ -101,6 +101,60 @@ public class FilterSortTest extends BaseTest {
     }
 
 
+    // ─────────────────────────────────────────
+    // COLL-06 — Multiple filters narrow the result set
+    // ─────────────────────────────────────────
+    @Test(enabled = true)
+    public void verifyMultipleFiltersNarrowResults() {
+        log.info("TEST: Verifying multiple filters narrow results...");
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+
+        CollectionPage collectionPage = new CollectionPage(driver);
+        collectionPage.navigateToShopAll();
+
+        collectionPage.clickFilterButton();
+        collectionPage.clickFilterOption("Product type");
+        collectionPage.selectFilterValue("Perfume");
+        collectionPage.selectFilterValue("Gift Set");
+        collectionPage.clickApplyFilter();
+
+        Assert.assertEquals(collectionPage.getAppliedFilterCount(), 2,
+                "Two applied-filter chips expected. Actual chips: " + collectionPage.getAppliedFilterTexts());
+        Assert.assertTrue(
+                collectionPage.getAppliedFilterTexts().toString().contains("Perfume")
+                        && collectionPage.getAppliedFilterTexts().toString().contains("Gift Set"),
+                "Both selected values should appear as chips. Actual: " + collectionPage.getAppliedFilterTexts());
+    }
+
+    // ─────────────────────────────────────────
+    // COLL-07 — Clear all restores the full product list
+    // ─────────────────────────────────────────
+    @Test(enabled = true)
+    public void verifyClearFilterRestoresResults() {
+        log.info("TEST: Verifying clear-all restores results...");
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+
+        CollectionPage collectionPage = new CollectionPage(driver);
+        collectionPage.navigateToShopAll();
+        int totalBefore = collectionPage.getVisibleProductCount();
+
+        collectionPage.clickFilterButton();
+        collectionPage.clickFilterOption("Product type");
+        collectionPage.selectFilterValue("Gift Set");
+        collectionPage.clickApplyFilter();
+        Assert.assertEquals(collectionPage.getAppliedFilterCount(), 1, "One chip expected after applying a filter");
+
+        collectionPage.clearAllFilters();
+
+        Assert.assertEquals(collectionPage.getAppliedFilterCount(), 0,
+                "No applied-filter chips should remain after Clear all");
+        Assert.assertTrue(collectionPage.getVisibleProductCount() >= totalBefore,
+                "Product grid should be restored after clearing filters (before=" + totalBefore
+                        + ", after=" + collectionPage.getVisibleProductCount() + ")");
+    }
+
     @DataProvider(name = "sortAndFilterCombinedData")
     public Object[][] sortAndFilterData() {
         return new Object[][]{

@@ -28,6 +28,10 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//input[@aria-label='Search']")
     private WebElement searchInput;
 
+    // "We couldn't find any matches!" heading on the empty search-results page.
+    @FindBy(css = "h2.search-empty-title")
+    private WebElement searchEmptyTitle;
+
     // Logo at top of page
     @FindBy(css = ".logo-image")
     private WebElement logo;
@@ -120,6 +124,47 @@ public class HomePage extends BasePage {
 
     public String getFirstSearchResultText() {
         return firstSearchResult.getText().toUpperCase();
+    }
+
+    /** Submits the search without waiting for a result row — used for the no-results case. */
+    public void submitSearchExpectingNoResults() {
+        searchInput.sendKeys(org.openqa.selenium.Keys.RETURN);
+    }
+
+    /** True when the empty-search "no matches" heading is shown. */
+    public boolean isNoSearchResultsDisplayed() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(searchEmptyTitle));
+            return searchEmptyTitle.isDisplayed();
+        } catch (Exception e) {
+            log.error("No-results heading not shown: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public String getNoSearchResultsMessage() {
+        try {
+            return searchEmptyTitle.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    /**
+     * Clicks a header navigation link by its exact text and waits for the collection URL to load.
+     * Works for mega-menu subcategories too: the anchor carries a real href, so a JS click navigates
+     * even when the submenu is collapsed (as it is in headless runs).
+     */
+    public void navigateToHeaderLink(String navText, String expectedUrlFragment) {
+        try {
+            WebElement link = driver.findElement(
+                    By.xpath("//header//a[normalize-space()='" + navText + "']"));
+            jsClick(link);
+            wait.until(ExpectedConditions.urlContains(expectedUrlFragment));
+            log.info("Navigated via header link '" + navText + "' to " + getCurrentUrl());
+        } catch (Exception e) {
+            log.error("Failed to navigate via header link '" + navText + "': " + e.getMessage());
+        }
     }
 
     public void clickFirstSearchResult() {
