@@ -72,7 +72,7 @@ public class FilterSortTest extends BaseTest {
                 {"Occasions", "For Him"},
                 {"Occasions", "For Her"},
                 {"Occasions", "Gifting"},
-                {"Product type", "Attar"},
+                {"Product type", "Perfume"},
                 {"Product type", "Gift Set"},
                 {"Product type", "Perfume Combo"},
                 {"Category", "Bath & Body"},
