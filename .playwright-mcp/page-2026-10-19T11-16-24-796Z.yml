@@ -1,0 +1,330 @@
+- generic [active] [ref=f36e1]:
+  - generic [ref=f36e3]:
+    - button "Previous announcement" [ref=f36e4] [cursor=pointer]
+    - link "Get any 3 100ml PERFUMES for just ₹1298" [ref=f36e8] [cursor=pointer]:
+      - /url: /collections/all
+    - button "Next announcement" [ref=f36e9] [cursor=pointer]
+  - banner [ref=f36e12]:
+    - generic [ref=f36e15]:
+      - generic [ref=f36e16]:
+        - search [ref=f36e18]:
+          - searchbox "Search" [ref=f36e24]
+        - link [ref=f36e26] [cursor=pointer]:
+          - /url: /
+          - img "Bella Vita Logo" [ref=f36e27]
+        - generic [ref=f36e28]:
+          - link "Account" [ref=f36e29] [cursor=pointer]:
+            - /url: /account
+          - button "Cart" [ref=f36e34] [cursor=pointer]
+      - navigation [ref=f36e37]:
+        - generic [ref=f36e38]:
+          - link "Crazy Deals" [ref=f36e39] [cursor=pointer]:
+            - /url: /pages/build-a-box
+          - link "Shop All" [ref=f36e40] [cursor=pointer]:
+            - /url: /collections/all-products
+          - link "BestSellers" [ref=f36e41] [cursor=pointer]:
+            - /url: /collections/best-sellers
+          - link "Perfumes" [ref=f36e43] [cursor=pointer]:
+            - /url: /collections/all-perfumes
+          - link "Bath & Body" [ref=f36e45] [cursor=pointer]:
+            - /url: /collections/bath-body
+          - link "Little Luxuries" [ref=f36e46] [cursor=pointer]:
+            - /url: /collections/little-luxuries
+          - link "New Arrivals" [ref=f36e47] [cursor=pointer]:
+            - /url: /collections/new-arrivals
+  - main [ref=f36e48]:
+    - generic [ref=f36e49]:
+      - text: • • • • • • • • • •
+      - generic [ref=f36e50]:
+        - generic [ref=f36e52]:
+          - button "Open image gallery" [ref=f36e54]:
+            - generic [ref=f36e55]: Bestseller
+            - img "WHITE OUD Unisex Perfume - 100ml" [ref=f36e56]
+            - generic [ref=f36e57]: 43% OFF
+          - generic [ref=f36e58]:
+            - button "Previous images" [disabled] [ref=f36e59] [cursor=pointer]
+            - generic [ref=f36e62]:
+              - generic [ref=f36e64]:
+                - button [ref=f36e65] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 1" [ref=f36e66]
+                - button [ref=f36e67] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 2" [ref=f36e68]
+                - button [ref=f36e69] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 3" [ref=f36e70]
+                - button [ref=f36e71] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 4" [ref=f36e72]
+                - button [ref=f36e73] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 5" [ref=f36e74]
+                - button [ref=f36e75] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 6" [ref=f36e76]
+                - button [ref=f36e77] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 7" [ref=f36e78]
+                - button [ref=f36e79] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 8" [ref=f36e80]
+                - button [ref=f36e81] [cursor=pointer]:
+                  - img "WHITE OUD Unisex Perfume - 100ml - 9" [ref=f36e82]
+              - slider "Thumbnail navigation" [ref=f36e84] [cursor=pointer]
+            - button "Next images" [ref=f36e85] [cursor=pointer]
+        - generic [ref=f36e88]:
+          - heading "WHITE OUD Unisex Perfume - 100ml" [level=1] [ref=f36e89]
+          - generic [ref=f36e90]: ARTEMISIAN LEMON | FREESIA | MUSK
+          - generic [ref=f36e92]:
+            - generic [ref=f36e93]: ★
+            - generic [ref=f36e94]: "4.6"
+            - generic [ref=f36e95]:
+              - text: "|"
+              - img "Verified" [ref=f36e96]
+              - text: (1141 Reviews)
+            - button "Share" [ref=f36e97] [cursor=pointer]
+        - generic [ref=f36e101]:
+          - generic [ref=f36e102]:
+            - generic [ref=f36e104]:
+              - generic [ref=f36e105]: "-43%"
+              - generic [ref=f36e106]: ₹565.00
+              - generic [ref=f36e107]:
+                - text: "MRP:"
+                - generic [ref=f36e108]: ₹999.00
+              - paragraph [ref=f36e109]: Inclusive of all taxes
+            - generic [ref=f36e111]:
+              - button "Decrease quantity" [ref=f36e112] [cursor=pointer]: "-"
+              - generic [ref=f36e113]: "1"
+              - button "Increase quantity" [ref=f36e114] [cursor=pointer]: +
+          - button "ADD TO CART" [ref=f36e117] [cursor=pointer]
+          - generic [ref=f36e118]:
+            - generic [ref=f36e119]:
+              - img "Long Lasting" [ref=f36e120]
+              - paragraph [ref=f36e121]: Long Lasting
+            - generic [ref=f36e122]:
+              - img "IFRA - Certified" [ref=f36e123]
+              - paragraph [ref=f36e124]: IFRA - Certified
+            - generic [ref=f36e125]:
+              - img "Imported Oils" [ref=f36e126]
+              - paragraph [ref=f36e127]: Imported Oils
+            - generic [ref=f36e128]:
+              - img "Made In India" [ref=f36e129]
+              - paragraph [ref=f36e130]: Made In India
+          - generic [ref=f36e131]:
+            - paragraph [ref=f36e134]: The Spice Odyssey.Charmed by the tangy Artemisian Lemon at the top, delicately distinct freesias at its heart amidst the enchanting amber and musk at its base, The White Oud is a revelation of all things 'sweet' and 'spice'! This is a blend of extremes, where the best of both worlds come together to create a perennially calming experience!
+            - button "Read more" [ref=f36e136] [cursor=pointer]
+          - text: • • • • • • • • • •
+      - generic [ref=f36e138]:
+        - region [ref=f36e139]:
+          - heading "Product details" [level=2] [ref=f36e140]
+          - generic [ref=f36e141]:
+            - button "KEY BENEFITS" [ref=f36e142] [cursor=pointer]
+            - generic: "- IFRA-certified and Safe to Use on Skin - Long-lasting - Made with Imported Oils"
+          - generic [ref=f36e147]:
+            - button "HOW TO USE" [ref=f36e148] [cursor=pointer]
+            - generic: Spray the perfume on your pulse points such as sides of the neck and wrists for all day freshness.
+          - generic [ref=f36e153]:
+            - button "PERFUME NOTES" [ref=f36e154] [cursor=pointer]
+            - generic [ref=f36e159]:
+              - generic [ref=f36e160]:
+                - img "Artemisian lemon" [ref=f36e162]
+                - heading "Artemisian lemon" [level=3] [ref=f36e163]
+                - paragraph [ref=f36e164]: It offers a fresh and invigorating scent that provides an immediate burst of vitality and freshness to the fragrance.
+              - generic [ref=f36e165]:
+                - img "Freesia" [ref=f36e167]
+                - heading "Freesia" [level=3] [ref=f36e168]
+                - paragraph [ref=f36e169]: Its floral and airy aroma carries a sense of lightness and purity, adding an aura of freshness and grace to the fragrance.
+              - generic [ref=f36e170]:
+                - img "Musk" [ref=f36e172]
+                - heading "Musk" [level=3] [ref=f36e173]
+                - paragraph [ref=f36e174]: It helps to add depth, sensuality, and longevity to the fragrance.
+          - generic [ref=f36e175]:
+            - button "ALL INGREDIENTS" [ref=f36e176] [cursor=pointer]
+            - paragraph [ref=f36e180]: "Alcohol Content: (95% v/v] 80% w/w Denatured with 0.1549% of t-Butyl Alcohol + 0.00058% of Denatonium Benzoate. INGREDIENTS: Alcohol Denat, Fragrance (PARFUM), Aqua, BHT."
+        - region [ref=f36e181]:
+          - heading "Product reviews" [level=2] [ref=f36e182]
+        - region [ref=f36e264]:
+          - heading "You may also like" [level=2] [ref=f36e265]
+          - generic [ref=f36e266]:
+            - heading "YOU MAY ALSO LIKE" [level=3] [ref=f36e267]
+            - generic [ref=f36e268]:
+              - generic [ref=f36e269]:
+                - link "White Oud Unisex Perfume - 100ml 47% OFF EAU DE PARFUM AND SHOWER GEL FOR ALL White Oud Unisex Perfume - 100ml ★ 4.2 | Verified (10 Reviews) ₹599.00 ₹1,124.00" [ref=f36e270] [cursor=pointer]:
+                  - /url: /products/white-oud-unisex-perfume-100ml-virtual-combo
+                  - generic [ref=f36e271]:
+                    - img "White Oud Unisex Perfume - 100ml" [ref=f36e272]
+                    - generic [ref=f36e273]: 47% OFF
+                  - generic [ref=f36e274]:
+                    - paragraph [ref=f36e275]: EAU DE PARFUM AND SHOWER GEL FOR ALL
+                    - heading "White Oud Unisex Perfume - 100ml" [level=3] [ref=f36e276]
+                    - generic [ref=f36e277]:
+                      - generic [ref=f36e278]: ★
+                      - generic [ref=f36e279]: "4.2"
+                      - generic [ref=f36e280]: "|"
+                      - img "Verified" [ref=f36e281]
+                      - generic [ref=f36e282]: (10 Reviews)
+                    - generic [ref=f36e283]:
+                      - generic [ref=f36e284]: ₹599.00
+                      - generic [ref=f36e285]: ₹1,124.00
+                - button "ADD TO CART" [ref=f36e287] [cursor=pointer]
+              - generic [ref=f36e288]:
+                - link "WHITE OUD Unisex - 20ml 67% OFF EAU DE PARFUM WHITE OUD Unisex - 20ml ★ 4.4 | Verified (24 Reviews) ₹149.00 ₹449.00" [ref=f36e289] [cursor=pointer]:
+                  - /url: /products/white-oud-unisex-20ml
+                  - generic [ref=f36e290]:
+                    - img "WHITE OUD Unisex - 20ml" [ref=f36e291]
+                    - generic [ref=f36e292]: 67% OFF
+                  - generic [ref=f36e293]:
+                    - paragraph [ref=f36e294]: EAU DE PARFUM
+                    - heading "WHITE OUD Unisex - 20ml" [level=3] [ref=f36e295]
+                    - generic [ref=f36e296]:
+                      - generic [ref=f36e297]: ★
+                      - generic [ref=f36e298]: "4.4"
+                      - generic [ref=f36e299]: "|"
+                      - img "Verified" [ref=f36e300]
+                      - generic [ref=f36e301]: (24 Reviews)
+                    - generic [ref=f36e302]:
+                      - generic [ref=f36e303]: ₹149.00
+                      - generic [ref=f36e304]: ₹449.00
+                - button "ADD TO CART" [ref=f36e306] [cursor=pointer]
+              - generic [ref=f36e307]:
+                - link "OUD Unisex - 100ml 45% OFF EAU DE PARFUM OUD Unisex - 100ml ★ 4.7 | Verified (795 Reviews) ₹549.00 ₹999.00" [ref=f36e308] [cursor=pointer]:
+                  - /url: /products/oud-parfum-unisex-luxury-perfume
+                  - generic [ref=f36e309]:
+                    - img "OUD Unisex - 100ml" [ref=f36e310]
+                    - generic [ref=f36e311]: 45% OFF
+                  - generic [ref=f36e312]:
+                    - paragraph [ref=f36e313]: EAU DE PARFUM
+                    - heading "OUD Unisex - 100ml" [level=3] [ref=f36e314]
+                    - generic [ref=f36e315]:
+                      - generic [ref=f36e316]: ★
+                      - generic [ref=f36e317]: "4.7"
+                      - generic [ref=f36e318]: "|"
+                      - img "Verified" [ref=f36e319]
+                      - generic [ref=f36e320]: (795 Reviews)
+                    - generic [ref=f36e321]:
+                      - generic [ref=f36e322]: ₹549.00
+                      - generic [ref=f36e323]: ₹999.00
+                - button "ADD TO CART" [ref=f36e325] [cursor=pointer]
+              - generic [ref=f36e326]:
+                - link "OUD Unisex - 20ml 67% OFF EAU DE PARFUM OUD Unisex - 20ml ★ 4.7 | Verified (15 Reviews) ₹149.00 ₹449.00" [ref=f36e327] [cursor=pointer]:
+                  - /url: /products/oud-unisex-20ml
+                  - generic [ref=f36e328]:
+                    - img "OUD Unisex - 20ml" [ref=f36e329]
+                    - generic [ref=f36e330]: 67% OFF
+                  - generic [ref=f36e331]:
+                    - paragraph [ref=f36e332]: EAU DE PARFUM
+                    - heading "OUD Unisex - 20ml" [level=3] [ref=f36e333]
+                    - generic [ref=f36e334]:
+                      - generic [ref=f36e335]: ★
+                      - generic [ref=f36e336]: "4.7"
+                      - generic [ref=f36e337]: "|"
+                      - img "Verified" [ref=f36e338]
+                      - generic [ref=f36e339]: (15 Reviews)
+                    - generic [ref=f36e340]:
+                      - generic [ref=f36e341]: ₹149.00
+                      - generic [ref=f36e342]: ₹449.00
+                - button "ADD TO CART" [ref=f36e344] [cursor=pointer]
+  - contentinfo [ref=f36e345]:
+    - generic [ref=f36e346]:
+      - generic [ref=f36e347]:
+        - heading "BESTSELLERS" [level=4] [ref=f36e348]
+        - list [ref=f36e349]:
+          - listitem [ref=f36e350]:
+            - link "Ultimate Perfume Box" [ref=f36e351] [cursor=pointer]:
+              - /url: /pages/build-a-box/ultimate-perfume-box
+          - listitem [ref=f36e352]:
+            - link "Perfume Gift Set For Men" [ref=f36e353] [cursor=pointer]:
+              - /url: /products/luxury-perfume-gift-set-for-men-4x20-ml
+          - listitem [ref=f36e354]:
+            - link "Perfume Gift Set For Women" [ref=f36e355] [cursor=pointer]:
+              - /url: /products/luxury-perfumes-gift-set-for-women-4x20-ml
+          - listitem [ref=f36e356]:
+            - link "Under Eye Cream for Dark Circles" [ref=f36e357] [cursor=pointer]:
+              - /url: /products/eyelift-under-eye-cream-for-dark-circles-and-wrinkles
+          - listitem [ref=f36e358]:
+            - link "Perfume For Men" [ref=f36e359] [cursor=pointer]:
+              - /url: /collections/perfumes-for-him
+          - listitem [ref=f36e360]:
+            - link "Perfume For Women" [ref=f36e361] [cursor=pointer]:
+              - /url: /collections/perfumes-for-her
+          - listitem [ref=f36e362]:
+            - link "Unisex Perfume" [ref=f36e363] [cursor=pointer]:
+              - /url: /collections/unisex-perfumes-men-women
+      - generic [ref=f36e364]:
+        - heading "INFORMATION" [level=4] [ref=f36e365]
+        - list [ref=f36e366]:
+          - listitem [ref=f36e367]:
+            - link "Blogs" [ref=f36e368] [cursor=pointer]:
+              - /url: /blogs/perfumes
+          - listitem [ref=f36e369]:
+            - link "Terms & Conditions" [ref=f36e370] [cursor=pointer]:
+              - /url: /pages/terms-and-conditions
+          - listitem [ref=f36e371]:
+            - link "Privacy Policy" [ref=f36e372] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+          - listitem [ref=f36e373]:
+            - link "Refund and Return" [ref=f36e374] [cursor=pointer]:
+              - /url: /pages/refund-and-return
+          - listitem [ref=f36e375]:
+            - link "Shipping Policy" [ref=f36e376] [cursor=pointer]:
+              - /url: /pages/shipping-and-delivery
+      - generic [ref=f36e377]:
+        - heading "SUPPORT" [level=4] [ref=f36e378]
+        - list [ref=f36e379]:
+          - listitem [ref=f36e380]:
+            - link "About Us" [ref=f36e381] [cursor=pointer]:
+              - /url: /pages/about-us
+          - listitem [ref=f36e382]:
+            - link "Contact Us" [ref=f36e383] [cursor=pointer]:
+              - /url: /pages/contact-us
+          - listitem [ref=f36e384]:
+            - link "Order Tracking" [ref=f36e385] [cursor=pointer]:
+              - /url: https://bellavita.shiprocket.co/tracking
+          - listitem [ref=f36e386]:
+            - link "All Products" [ref=f36e387] [cursor=pointer]:
+              - /url: /collections/all
+          - listitem [ref=f36e388]:
+            - link "FAQ" [ref=f36e389] [cursor=pointer]:
+              - /url: /pages/frequently-asked-questions
+      - generic [ref=f36e390]:
+        - heading "CONTACT US" [level=4] [ref=f36e391]
+        - paragraph [ref=f36e392]: "Office Location: Plot no. 417, Udyog Vihar Phase III, Gurgaon, Haryana, India"
+        - link "Contact Us on WhatsApp" [ref=f36e393] [cursor=pointer]:
+          - /url: https://wa.me/917899209461?text=Hey,%20Let's%20chat%20about%20Bella%20Vita%20Luxury.
+        - paragraph [ref=f36e394]: +91-9810154380
+        - paragraph [ref=f36e395]: "Timing: 10:00 AM to 7:00 PM, Monday to Sunday"
+    - generic [ref=f36e397]:
+      - link "Facebook" [ref=f36e398] [cursor=pointer]:
+        - /url: https://www.facebook.com/bellavitaorganic
+      - link "X" [ref=f36e401] [cursor=pointer]:
+        - /url: https://x.com/bellavita_org
+      - link "Pinterest" [ref=f36e404] [cursor=pointer]:
+        - /url: https://in.pinterest.com/BellaVitaOrg
+      - link "Instagram" [ref=f36e407] [cursor=pointer]:
+        - /url: https://www.instagram.com/bellavita.official
+      - link "YouTube" [ref=f36e410] [cursor=pointer]:
+        - /url: https://www.youtube.com/c/BellaVitaOrganicIndia
+    - generic [ref=f36e413]:
+      - paragraph [ref=f36e414]:
+        - text: © 2026,
+        - link "Bella Vita Organic (IDAM Natural Wellness Pvt. Ltd.)" [ref=f36e415] [cursor=pointer]:
+          - /url: /
+        - text: .
+      - list [ref=f36e416]:
+        - listitem [ref=f36e417]:
+          - text: Please be aware that
+          - generic [ref=f36e418]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=f36e419]:
+          - generic [ref=f36e420]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=f36e421]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=f36e422]: Stay safe!
+    - generic [ref=f36e423]:
+      - heading "Scam Alert" [level=5] [ref=f36e424]
+      - paragraph [ref=f36e429]: We have noticed a rise in fraudulent activities through calls, SMS, WhatsApp messages, emails, and other mediums.
+      - list [ref=f36e430]:
+        - listitem [ref=f36e431]:
+          - text: Please be aware that
+          - generic [ref=f36e432]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=f36e433]:
+          - generic [ref=f36e434]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=f36e435]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=f36e436]: Stay safe!
+  - link "Contact us on WhatsApp" [ref=f36e438] [cursor=pointer]:
+    - /url: https://wa.me/917899209461?text=Hey%2C%20Let's%20chat%20about%20Bella%20Vita%20Luxury.

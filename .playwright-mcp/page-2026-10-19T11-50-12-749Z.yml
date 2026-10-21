@@ -1,0 +1,314 @@
+- generic [active] [ref=f56e1]:
+  - generic [ref=f56e3]:
+    - button "Previous announcement" [ref=f56e4] [cursor=pointer]
+    - link "FLAT 5% OFF ON PREPAID ORDERS" [ref=f56e8] [cursor=pointer]:
+      - /url: /collections/all
+    - button "Next announcement" [ref=f56e9] [cursor=pointer]
+  - banner [ref=f56e12]:
+    - generic [ref=f56e15]:
+      - generic [ref=f56e16]:
+        - search [ref=f56e18]:
+          - searchbox "Search" [ref=f56e24]
+        - link [ref=f56e26] [cursor=pointer]:
+          - /url: /
+          - img "Bella Vita Logo" [ref=f56e27]
+        - generic [ref=f56e28]:
+          - link "Account" [ref=f56e29] [cursor=pointer]:
+            - /url: /account
+          - button "Cart" [ref=f56e34] [cursor=pointer]:
+            - generic [ref=f56e37]: "1"
+      - navigation [ref=f56e38]:
+        - generic [ref=f56e39]:
+          - link "Crazy Deals" [ref=f56e40] [cursor=pointer]:
+            - /url: /pages/build-a-box
+          - link "Shop All" [ref=f56e41] [cursor=pointer]:
+            - /url: /collections/all-products
+          - link "BestSellers" [ref=f56e42] [cursor=pointer]:
+            - /url: /collections/best-sellers
+          - link "Perfumes" [ref=f56e44] [cursor=pointer]:
+            - /url: /collections/all-perfumes
+          - link "Bath & Body" [ref=f56e46] [cursor=pointer]:
+            - /url: /collections/bath-body
+          - link "Little Luxuries" [ref=f56e47] [cursor=pointer]:
+            - /url: /collections/little-luxuries
+          - link "New Arrivals" [ref=f56e48] [cursor=pointer]:
+            - /url: /collections/new-arrivals
+  - main [ref=f56e49]:
+    - generic [ref=f56e51]:
+      - heading "- All Products -" [level=1] [ref=f56e52]
+      - generic [ref=f56e56]:
+        - button "FILTER" [ref=f56e57] [cursor=pointer]
+        - button "SORT BY" [ref=f56e61] [cursor=pointer]
+      - generic [ref=f56e66]:
+        - generic [ref=f56e67]:
+          - link "Luxury Perfume Gift Set For Men - 4 x 20ml BESTSELLER 35% OFF EAU DE PARFUM Luxury Perfume Gift Set For Men - 4 x 20ml ★ 4.5 | Verified (1409 Reviews) ₹549.00 ₹849.00" [ref=f56e68] [cursor=pointer]:
+            - /url: /products/mens-luxury-perfume
+            - generic [ref=f56e69]:
+              - img "Luxury Perfume Gift Set For Men - 4 x 20ml" [ref=f56e70]
+              - generic [ref=f56e71]: BESTSELLER
+              - generic [ref=f56e72]: 35% OFF
+            - generic [ref=f56e73]:
+              - paragraph [ref=f56e74]: EAU DE PARFUM
+              - heading "Luxury Perfume Gift Set For Men - 4 x 20ml" [level=3] [ref=f56e75]
+              - generic [ref=f56e76]:
+                - generic [ref=f56e77]: ★
+                - generic [ref=f56e78]: "4.5"
+                - generic [ref=f56e79]: "|"
+                - img "Verified" [ref=f56e80]
+                - generic [ref=f56e81]: (1409 Reviews)
+              - generic [ref=f56e82]:
+                - generic [ref=f56e83]: ₹549.00
+                - generic [ref=f56e84]: ₹849.00
+          - button "ADD TO CART" [ref=f56e86] [cursor=pointer]
+        - generic [ref=f56e87]:
+          - link "WHITE OUD Unisex Perfume - 100ml BESTSELLER 43% OFF EAU DE PARFUM WHITE OUD Unisex Perfume - 100ml ★ 4.6 | Verified (1141 Reviews) ₹565.00 ₹999.00" [ref=f56e88] [cursor=pointer]:
+            - /url: /products/white-oud-unisex-luxury-perfume
+            - generic [ref=f56e89]:
+              - img "WHITE OUD Unisex Perfume - 100ml" [ref=f56e90]
+              - generic [ref=f56e91]: BESTSELLER
+              - generic [ref=f56e92]: 43% OFF
+            - generic [ref=f56e93]:
+              - paragraph [ref=f56e94]: EAU DE PARFUM
+              - heading "WHITE OUD Unisex Perfume - 100ml" [level=3] [ref=f56e95]
+              - generic [ref=f56e96]:
+                - generic [ref=f56e97]: ★
+                - generic [ref=f56e98]: "4.6"
+                - generic [ref=f56e99]: "|"
+                - img "Verified" [ref=f56e100]
+                - generic [ref=f56e101]: (1141 Reviews)
+              - generic [ref=f56e102]:
+                - generic [ref=f56e103]: ₹565.00
+                - generic [ref=f56e104]: ₹999.00
+          - button "ADD TO CART" [ref=f56e106] [cursor=pointer]
+        - generic [ref=f56e107]:
+          - link "Luxury Unisex Perfume Gift Set - 4 x 20ml BESTSELLER 35% OFF EAU DE PARFUM Luxury Unisex Perfume Gift Set - 4 x 20ml ★ 4.6 | Verified (1120 Reviews) ₹549.00 ₹849.00" [ref=f56e108] [cursor=pointer]:
+            - /url: /products/unisex-luxury-perfume-gift-set
+            - generic [ref=f56e109]:
+              - img "Luxury Unisex Perfume Gift Set - 4 x 20ml" [ref=f56e110]
+              - generic [ref=f56e111]: BESTSELLER
+              - generic [ref=f56e112]: 35% OFF
+            - generic [ref=f56e113]:
+              - paragraph [ref=f56e114]: EAU DE PARFUM
+              - heading "Luxury Unisex Perfume Gift Set - 4 x 20ml" [level=3] [ref=f56e115]
+              - generic [ref=f56e116]:
+                - generic [ref=f56e117]: ★
+                - generic [ref=f56e118]: "4.6"
+                - generic [ref=f56e119]: "|"
+                - img "Verified" [ref=f56e120]
+                - generic [ref=f56e121]: (1120 Reviews)
+              - generic [ref=f56e122]:
+                - generic [ref=f56e123]: ₹549.00
+                - generic [ref=f56e124]: ₹849.00
+          - button "ADD TO CART" [ref=f56e126] [cursor=pointer]
+        - generic [ref=f56e127]:
+          - link "Mood Collection Gift Set For Him - 3 x 15ml NEW 35% OFF PERFUME GIFT SET FOR MEN Mood Collection Gift Set For Him - 3 x 15ml ★ 4.6 | Verified (296 Reviews) ₹549.00 ₹849.00" [ref=f56e128] [cursor=pointer]:
+            - /url: /products/mood-collection-gift-set-for-him-3-x-15ml
+            - generic [ref=f56e129]:
+              - img "Mood Collection Gift Set For Him - 3 x 15ml" [ref=f56e130]
+              - generic [ref=f56e131]: NEW
+              - generic [ref=f56e132]: 35% OFF
+            - generic [ref=f56e133]:
+              - paragraph [ref=f56e134]: PERFUME GIFT SET FOR MEN
+              - heading "Mood Collection Gift Set For Him - 3 x 15ml" [level=3] [ref=f56e135]
+              - generic [ref=f56e136]:
+                - generic [ref=f56e137]: ★
+                - generic [ref=f56e138]: "4.6"
+                - generic [ref=f56e139]: "|"
+                - img "Verified" [ref=f56e140]
+                - generic [ref=f56e141]: (296 Reviews)
+              - generic [ref=f56e142]:
+                - generic [ref=f56e143]: ₹549.00
+                - generic [ref=f56e144]: ₹849.00
+          - button "ADD TO CART" [ref=f56e146] [cursor=pointer]
+        - generic [ref=f56e147]:
+          - link "Luxury Perfume Gift Set For Women - 4 x 20ml BESTSELLER 35% OFF EAU DE PARFUM Luxury Perfume Gift Set For Women - 4 x 20ml ★ 4.8 | Verified (584 Reviews) ₹549.00 ₹849.00" [ref=f56e148] [cursor=pointer]:
+            - /url: /products/luxury-perfumes-gift-set-for-women
+            - generic [ref=f56e149]:
+              - img "Luxury Perfume Gift Set For Women - 4 x 20ml" [ref=f56e150]
+              - generic [ref=f56e151]: BESTSELLER
+              - generic [ref=f56e152]: 35% OFF
+            - generic [ref=f56e153]:
+              - paragraph [ref=f56e154]: EAU DE PARFUM
+              - heading "Luxury Perfume Gift Set For Women - 4 x 20ml" [level=3] [ref=f56e155]
+              - generic [ref=f56e156]:
+                - generic [ref=f56e157]: ★
+                - generic [ref=f56e158]: "4.8"
+                - generic [ref=f56e159]: "|"
+                - img "Verified" [ref=f56e160]
+                - generic [ref=f56e161]: (584 Reviews)
+              - generic [ref=f56e162]:
+                - generic [ref=f56e163]: ₹549.00
+                - generic [ref=f56e164]: ₹849.00
+          - button "ADD TO CART" [ref=f56e166] [cursor=pointer]
+        - generic [ref=f56e167]:
+          - link "Narco Unisex Perfume - 100ml NEW 50% OFF EAU DE PARFUM FOR ALL Narco Unisex Perfume - 100ml ★ 4.8 | Verified (24 Reviews) ₹449.00 ₹899.00" [ref=f56e168] [cursor=pointer]:
+            - /url: /products/narco-100ml
+            - generic [ref=f56e169]:
+              - img "Narco Unisex Perfume - 100ml" [ref=f56e170]
+              - generic [ref=f56e171]: NEW
+              - generic [ref=f56e172]: 50% OFF
+            - generic [ref=f56e173]:
+              - paragraph [ref=f56e174]: EAU DE PARFUM FOR ALL
+              - heading "Narco Unisex Perfume - 100ml" [level=3] [ref=f56e175]
+              - generic [ref=f56e176]:
+                - generic [ref=f56e177]: ★
+                - generic [ref=f56e178]: "4.8"
+                - generic [ref=f56e179]: "|"
+                - img "Verified" [ref=f56e180]
+                - generic [ref=f56e181]: (24 Reviews)
+              - generic [ref=f56e182]:
+                - generic [ref=f56e183]: ₹449.00
+                - generic [ref=f56e184]: ₹899.00
+          - button "ADD TO CART" [ref=f56e186] [cursor=pointer]
+        - generic [ref=f56e187]:
+          - link "ROSE Woman Perfume - 100ml 44% OFF EAU DE PARFUM ROSE Woman Perfume - 100ml ★ 4.8 | Verified (392 Reviews) ₹499.00 ₹899.00" [ref=f56e188] [cursor=pointer]:
+            - /url: /products/rose-woman-womens-luxury-perfume
+            - generic [ref=f56e189]:
+              - img "ROSE Woman Perfume - 100ml" [ref=f56e190]
+              - generic [ref=f56e191]: 44% OFF
+            - generic [ref=f56e192]:
+              - paragraph [ref=f56e193]: EAU DE PARFUM
+              - heading "ROSE Woman Perfume - 100ml" [level=3] [ref=f56e194]
+              - generic [ref=f56e195]:
+                - generic [ref=f56e196]: ★
+                - generic [ref=f56e197]: "4.8"
+                - generic [ref=f56e198]: "|"
+                - img "Verified" [ref=f56e199]
+                - generic [ref=f56e200]: (392 Reviews)
+              - generic [ref=f56e201]:
+                - generic [ref=f56e202]: ₹499.00
+                - generic [ref=f56e203]: ₹899.00
+          - button "ADD TO CART" [ref=f56e205] [cursor=pointer]
+        - generic [ref=f56e206]:
+          - link "SENORITA Woman Perfume - 100ml 44% OFF EAU DE PARFUM SENORITA Woman Perfume - 100ml ★ 4.6 | Verified (41 Reviews) ₹499.00 ₹899.00" [ref=f56e207] [cursor=pointer]:
+            - /url: /products/senorita-woman-edp
+            - generic [ref=f56e208]:
+              - img "SENORITA Woman Perfume - 100ml" [ref=f56e209]
+              - generic [ref=f56e210]: 44% OFF
+            - generic [ref=f56e211]:
+              - paragraph [ref=f56e212]: EAU DE PARFUM
+              - heading "SENORITA Woman Perfume - 100ml" [level=3] [ref=f56e213]
+              - generic [ref=f56e214]:
+                - generic [ref=f56e215]: ★
+                - generic [ref=f56e216]: "4.6"
+                - generic [ref=f56e217]: "|"
+                - img "Verified" [ref=f56e218]
+                - generic [ref=f56e219]: (41 Reviews)
+              - generic [ref=f56e220]:
+                - generic [ref=f56e221]: ₹499.00
+                - generic [ref=f56e222]: ₹899.00
+          - button "ADD TO CART" [ref=f56e224] [cursor=pointer]
+      - generic:
+        - link:
+          - /url: /collections/all-products?direction=next&cursor=eyJsYXN0X2lkIjo2OTkwMzc4OTU4ODkyLCJsYXN0X3ZhbHVlIjoiMTI0ajl4NXlhczgiLCJvZmZzZXQiOjd9
+  - contentinfo [ref=f56e226]:
+    - generic [ref=f56e227]:
+      - generic [ref=f56e228]:
+        - heading "BESTSELLERS" [level=4] [ref=f56e229]
+        - list [ref=f56e230]:
+          - listitem [ref=f56e231]:
+            - link "Ultimate Perfume Box" [ref=f56e232] [cursor=pointer]:
+              - /url: /pages/build-a-box/ultimate-perfume-box
+          - listitem [ref=f56e233]:
+            - link "Perfume Gift Set For Men" [ref=f56e234] [cursor=pointer]:
+              - /url: /products/luxury-perfume-gift-set-for-men-4x20-ml
+          - listitem [ref=f56e235]:
+            - link "Perfume Gift Set For Women" [ref=f56e236] [cursor=pointer]:
+              - /url: /products/luxury-perfumes-gift-set-for-women-4x20-ml
+          - listitem [ref=f56e237]:
+            - link "Under Eye Cream for Dark Circles" [ref=f56e238] [cursor=pointer]:
+              - /url: /products/eyelift-under-eye-cream-for-dark-circles-and-wrinkles
+          - listitem [ref=f56e239]:
+            - link "Perfume For Men" [ref=f56e240] [cursor=pointer]:
+              - /url: /collections/perfumes-for-him
+          - listitem [ref=f56e241]:
+            - link "Perfume For Women" [ref=f56e242] [cursor=pointer]:
+              - /url: /collections/perfumes-for-her
+          - listitem [ref=f56e243]:
+            - link "Unisex Perfume" [ref=f56e244] [cursor=pointer]:
+              - /url: /collections/unisex-perfumes-men-women
+      - generic [ref=f56e245]:
+        - heading "INFORMATION" [level=4] [ref=f56e246]
+        - list [ref=f56e247]:
+          - listitem [ref=f56e248]:
+            - link "Blogs" [ref=f56e249] [cursor=pointer]:
+              - /url: /blogs/perfumes
+          - listitem [ref=f56e250]:
+            - link "Terms & Conditions" [ref=f56e251] [cursor=pointer]:
+              - /url: /pages/terms-and-conditions
+          - listitem [ref=f56e252]:
+            - link "Privacy Policy" [ref=f56e253] [cursor=pointer]:
+              - /url: /policies/privacy-policy
+          - listitem [ref=f56e254]:
+            - link "Refund and Return" [ref=f56e255] [cursor=pointer]:
+              - /url: /pages/refund-and-return
+          - listitem [ref=f56e256]:
+            - link "Shipping Policy" [ref=f56e257] [cursor=pointer]:
+              - /url: /pages/shipping-and-delivery
+      - generic [ref=f56e258]:
+        - heading "SUPPORT" [level=4] [ref=f56e259]
+        - list [ref=f56e260]:
+          - listitem [ref=f56e261]:
+            - link "About Us" [ref=f56e262] [cursor=pointer]:
+              - /url: /pages/about-us
+          - listitem [ref=f56e263]:
+            - link "Contact Us" [ref=f56e264] [cursor=pointer]:
+              - /url: /pages/contact-us
+          - listitem [ref=f56e265]:
+            - link "Order Tracking" [ref=f56e266] [cursor=pointer]:
+              - /url: https://bellavita.shiprocket.co/tracking
+          - listitem [ref=f56e267]:
+            - link "All Products" [ref=f56e268] [cursor=pointer]:
+              - /url: /collections/all
+          - listitem [ref=f56e269]:
+            - link "FAQ" [ref=f56e270] [cursor=pointer]:
+              - /url: /pages/frequently-asked-questions
+      - generic [ref=f56e271]:
+        - heading "CONTACT US" [level=4] [ref=f56e272]
+        - paragraph [ref=f56e273]: "Office Location: Plot no. 417, Udyog Vihar Phase III, Gurgaon, Haryana, India"
+        - link "Contact Us on WhatsApp" [ref=f56e274] [cursor=pointer]:
+          - /url: https://wa.me/917899209461?text=Hey,%20Let's%20chat%20about%20Bella%20Vita%20Luxury.
+        - paragraph [ref=f56e275]: +91-9810154380
+        - paragraph [ref=f56e276]: "Timing: 10:00 AM to 7:00 PM, Monday to Sunday"
+    - generic [ref=f56e278]:
+      - link "Facebook" [ref=f56e279] [cursor=pointer]:
+        - /url: https://www.facebook.com/bellavitaorganic
+      - link "X" [ref=f56e282] [cursor=pointer]:
+        - /url: https://x.com/bellavita_org
+      - link "Pinterest" [ref=f56e285] [cursor=pointer]:
+        - /url: https://in.pinterest.com/BellaVitaOrg
+      - link "Instagram" [ref=f56e288] [cursor=pointer]:
+        - /url: https://www.instagram.com/bellavita.official
+      - link "YouTube" [ref=f56e291] [cursor=pointer]:
+        - /url: https://www.youtube.com/c/BellaVitaOrganicIndia
+    - generic [ref=f56e294]:
+      - paragraph [ref=f56e295]:
+        - text: © 2026,
+        - link "Bella Vita Organic (IDAM Natural Wellness Pvt. Ltd.)" [ref=f56e296] [cursor=pointer]:
+          - /url: /
+        - text: .
+      - list [ref=f56e297]:
+        - listitem [ref=f56e298]:
+          - text: Please be aware that
+          - generic [ref=f56e299]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=f56e300]:
+          - generic [ref=f56e301]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=f56e302]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=f56e303]: Stay safe!
+    - generic [ref=f56e304]:
+      - heading "Scam Alert" [level=5] [ref=f56e305]
+      - paragraph [ref=f56e310]: We have noticed a rise in fraudulent activities through calls, SMS, WhatsApp messages, emails, and other mediums.
+      - list [ref=f56e311]:
+        - listitem [ref=f56e312]:
+          - text: Please be aware that
+          - generic [ref=f56e313]: BELLAVITA and its employees never ask for your financial details for contests or deals
+          - text: outside our official platform. We also never request payments for any promotional activities through unauthorised channels.
+        - listitem [ref=f56e314]:
+          - generic [ref=f56e315]: If you receive any such communication, stay cautious and reach out to us immediately at our
+          - text: customer care number +91 9810154380 or email us at shop@bellavitaorganic.com.
+        - listitem [ref=f56e316]: If you suspect any scam, kindly report it to the Department of Telecommunications (DoT).
+      - paragraph [ref=f56e317]: Stay safe!
+  - link "Contact us on WhatsApp" [ref=f56e319] [cursor=pointer]:
+    - /url: https://wa.me/917899209461?text=Hey%2C%20Let's%20chat%20about%20Bella%20Vita%20Luxury.
