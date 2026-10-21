@@ -184,6 +184,20 @@ public class LoginPage extends BasePage {
         log.info("Submitted OTP");
     }
 
+    /**
+     * Waits up to the given number of seconds for the OTP entry screen to appear. Returns false if it
+     * never does — used to assert that an invalid (too-short) mobile number does not trigger an OTP.
+     */
+    public boolean didOtpScreenAppear(int seconds) {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(seconds))
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("input-0")));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     /** True if KwikPass shows the "OTP verification failed." error (invalid/expired OTP). */
     public boolean isOtpErrorDisplayed() {
         try {

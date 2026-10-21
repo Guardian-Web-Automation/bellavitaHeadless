@@ -1,0 +1,50 @@
+[     732ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://bvl---live-59c56cb80d07a4341b5e.o2.myshopify.dev/products/luxury-perfume-gift-set-for-men-4x20-ml:0
+[     745ms] [ERROR] Loading the font 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2' violates the following Content Security Policy directive: "font-src 'self' https://cdn.shopify.com data:". The action has been blocked. @ https://bvl---live-59c56cb80d07a4341b5e.o2.myshopify.dev/products/luxury-perfume-gift-set-for-men-4x20-ml:0
+[    1188ms] [ERROR] Loading the font 'https://fonts.gstatic.com/s/lora/v35/0QI6MX1D_JOuGQbT0gvTJPa787weuxJBkqg.woff2' violates the following Content Security Policy directive: "font-src 'self' https://cdn.shopify.com data:". The action has been blocked. @ https://bvl---live-59c56cb80d07a4341b5e.o2.myshopify.dev/products/luxury-perfume-gift-set-for-men-4x20-ml:147
+[    1419ms] [ERROR] Loading the font 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2' violates the following Content Security Policy directive: "font-src 'self' https://cdn.shopify.com data:". The action has been blocked. @ https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:23
+[    1425ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at gu (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:22:4788)
+    at oa (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:45569)
+    at ra (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39705)
+    at tc (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39678)
+    at bs (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:34697)
+    at on (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:1650)
+    at MessagePort.Mn (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:2043)
+[    1425ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at gu (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:22:4788)
+    at oa (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:45569)
+    at ra (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39705)
+    at tc (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39678)
+    at bs (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:34697)
+    at on (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:1650)
+    at MessagePort.Mn (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:2043)
+[    1425ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at gu (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:22:4788)
+    at oa (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:45569)
+    at ra (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39705)
+    at tc (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39678)
+    at bs (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:34697)
+    at on (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:1650)
+    at MessagePort.Mn (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:2043)
+[    1425ms] Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at gu (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:22:4788)
+    at oa (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:45569)
+    at ra (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39705)
+    at tc (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39678)
+    at bs (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:34697)
+    at on (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:1650)
+    at MessagePort.Mn (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:2043)
+[    1426ms] Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at oa (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:45229)
+    at ra (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39705)
+    at nc (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39636)
+    at ml (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:39494)
+    at ri (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:35878)
+    at bs (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:24:34831)
+    at on (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:1650)
+    at MessagePort.Mn (https://cdn.shopify.com/oxygen-v2/50801/121022/248317/4100811/assets/index-BK_uqajb.js:9:2043)
+[    1426ms] [ERROR] Loading the font 'https://fonts.gstatic.com/s/lora/v35/0QI6MX1D_JOuGQbT0gvTJPa787weuxJBkqg.woff2' violates the following Content Security Policy directive: "font-src 'self' https://cdn.shopify.com data:". The action has been blocked. @ https://bvl---live-59c56cb80d07a4341b5e.o2.myshopify.dev/products/luxury-perfume-gift-set-for-men-4x20-ml:0
+[    1616ms] [ERROR] Loading the script 'https://sdk.gokwik.co/sdk/latest/gokwik-sdk.min.js' violates the following Content Security Policy directive: "script-src-elem 'self' 'unsafe-inline' https://cdn.judge.me https://cdn.shopify.com https://cdnwidget.judge.me https://pdp.gokwik.co https://hits.gokwik.co https://sandbox.pdp.gokwik.co https://sandbox-hits.gokwik.co https://capi-automation.s3.us-east-2.amazonaws.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://*.visualwebsiteoptimizer.com https://app.vwo.com". The action has been blocked. @ https://pdp.gokwik.co/merchant-integration/build/merchant.integration.js?v4:0
+[    1620ms] [ERROR] Loading the script 'https://sdk.gokwik.co/sdk/latest/gokwik-sdk.min.js' violates the following Content Security Policy directive: "script-src-elem 'self' 'unsafe-inline' https://cdn.judge.me https://cdn.shopify.com https://cdnwidget.judge.me https://pdp.gokwik.co https://hits.gokwik.co https://sandbox.pdp.gokwik.co https://sandbox-hits.gokwik.co https://capi-automation.s3.us-east-2.amazonaws.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://*.visualwebsiteoptimizer.com https://app.vwo.com". The action has been blocked. @ https://pdp.gokwik.co/merchant-integration/build/merchant.integration.js?v4:0
+[    1694ms] [WARNING] gk_analytics_sdk_unavailable_after_retry: script_load_error @ https://pdp.gokwik.co/merchant-integration/build/merchant.integration.js?v4:0
+[    1713ms] [ERROR] Loading the script 'https://sdk.gokwik.co/sdk/latest/gokwik-sdk.min.js' violates the following Content Security Policy directive: "script-src-elem 'self' 'unsafe-inline' https://cdn.judge.me https://cdn.shopify.com https://cdnwidget.judge.me https://pdp.gokwik.co https://hits.gokwik.co https://sandbox.pdp.gokwik.co https://sandbox-hits.gokwik.co https://capi-automation.s3.us-east-2.amazonaws.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://*.visualwebsiteoptimizer.com https://app.vwo.com". The action has been blocked. @ https://pdp.gokwik.co/kwikpass/plugin/build/kp-merchant-v2.js:0

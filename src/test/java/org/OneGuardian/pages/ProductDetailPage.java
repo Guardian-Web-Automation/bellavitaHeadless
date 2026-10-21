@@ -3,11 +3,14 @@ package org.OneGuardian.pages;
 import org.OneGuardian.base.BasePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class ProductDetailPage extends BasePage {
     protected static final Logger log = LogManager.getLogger(ProductDetailPage.class);
@@ -50,8 +53,155 @@ public class ProductDetailPage extends BasePage {
     @FindBy(xpath = "(//button[@aria-label='Cart'])[1]//span")
     private WebElement cartCountBubble;
 
+    // Main product heading (robust: the product title is the page's first H1).
+    @FindBy(css = "h1")
+    private WebElement pdpHeading;
+
+    // Sale and compare-at prices in the product info block (first occurrence is the main product;
+    // later .price-sale nodes belong to related-product cards further down the page).
+    @FindBy(css = ".price-sale")
+    private WebElement salePrice;
+
+    @FindBy(css = ".price-compare")
+    private WebElement comparePrice;
+
+    // Quantity stepper on the product form: "-" | value span | "+".
+    @FindBy(css = "button[aria-label='Increase quantity']")
+    private WebElement increaseQtyButton;
+
+    @FindBy(css = "button[aria-label='Decrease quantity']")
+    private WebElement decreaseQtyButton;
+
+    // The quantity value is the span sitting immediately before the "+" button.
+    @FindBy(xpath = "(//button[@aria-label='Increase quantity']/preceding-sibling::span[1])[1]")
+    private WebElement quantityValue;
+
+    // Judge.me review widget container — marks that the reviews section rendered.
+    @FindBy(css = ".jdgm-rev-widg, [class*='jdgm-widget'], [class*='review']")
+    private WebElement reviewWidget;
+
     public ProductDetailPage(WebDriver driver) {
         super(driver);
+    }
+
+    // =====================
+    // PDP info getters (PDP-01)
+    // =====================
+
+    /** Robust product title read (first H1 on the PDP). */
+    public String getPdpTitle() {
+        waitForVisibility(pdpHeading);
+        return pdpHeading.getText().trim();
+    }
+
+    public String getSalePrice() {
+        try {
+            waitForVisibility(salePrice);
+            return salePrice.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public String getComparePrice() {
+        try {
+            return comparePrice.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public boolean isReviewWidgetPresent() {
+        return isElementPresent(reviewWidget);
+    }
+
+    // =====================
+    // Quantity stepper (PDP-02 / PDP-04)
+    // =====================
+
+    public int getQuantityValue() {
+        try {
+            waitForVisibility(quantityValue);
+            return Integer.parseInt(quantityValue.getText().trim());
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public void increaseQuantity() {
+        safeClick(increaseQtyButton);
+    }
+
+    public void decreaseQuantity() {
+        safeClick(decreaseQtyButton);
+    }
+
+    /** Clicks "+" until the stepper shows the requested quantity (starts at 1). */
+    public void setQuantity(int target) {
+        for (int i = getQuantityValue(); i > 0 && i < target && i < 50; i = getQuantityValue()) {
+            increaseQuantity();
+        }
+        log.info("Set PDP quantity to " + getQuantityValue());
+    }
+
+    /**
+     * Clicks the main (in-form) ADD TO CART rather than the sticky footer button, so the product
+     * form's selected quantity is honoured. Uses a JS click so it works even when the button is
+     * scrolled out of the viewport in headless runs.
+     */
+    public void clickMainAddToCart() {
+        jsClick(addToCartButton);
+        log.info("Clicked main (in-form) ADD TO CART");
+    }
+
+    private final By relatedProductLink = By.cssSelector("[class*='related'] a[href*='/products/'], [class*='recommend'] a[href*='/products/']");
+
+    public boolean hasRelatedProducts() {
+        return !driver.findElements(relatedProductLink).isEmpty();
+    }
+
+    // =====================
+    // Info accordions (PDP-05)
+    // =====================
+
+    /** Clicks a product-info accordion header (e.g. "KEY BENEFITS", "PERFUME NOTES"). */
+    public void clickAccordion(String sectionName) {
+        WebElement header = driver.findElement(
+                By.xpath("//button[contains(normalize-space(),'" + sectionName + "')]"));
+        safeClick(header);
+    }
+
+    /**
+     * True when the accordion's content panel (the div immediately after its header button) is
+     * expanded and shows text. The panel is collapsed to height 0 until its header is clicked.
+     */
+    public boolean isAccordionContentVisible(String sectionName) {
+        try {
+            WebElement panel = driver.findElement(By.xpath(
+                    "//button[contains(normalize-space(),'" + sectionName + "')]/following-sibling::div[1]"));
+            wait.until(ExpectedConditions.visibilityOf(panel));
+            return panel.isDisplayed() && !panel.getText().trim().isEmpty();
+        } catch (Exception e) {
+            log.error("Accordion content not visible for '" + sectionName + "': " + e.getMessage());
+            return false;
+        }
+    }
+
+    // =====================
+    // Reviews (PDP-07)
+    // =====================
+
+    // Filled rating stars from the Judge.me widget.
+    @FindBy(css = ".jdgm-star.jdgm--on")
+    private List<WebElement> filledRatingStars;
+
+    public boolean isRatingStarsPresent() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElements(filledRatingStars));
+        } catch (Exception ignored) {
+            // Stars may already be present; fall through to the size check.
+        }
+        return !filledRatingStars.isEmpty();
     }
 
     // =====================

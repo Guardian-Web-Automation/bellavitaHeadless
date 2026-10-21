@@ -87,6 +87,27 @@ public class SearchTest extends BaseTest {
         log.info("Add to Cart verified successfully ✅ | Product: " + productName);
     }
 
+    // ─────────────────────────────────────────
+    // SRCH-03 — No-match search shows the empty state
+    // ─────────────────────────────────────────
+    @Test(enabled = true)
+    public void verifySearchNoResults() {
+        log.info("TEST: Verifying no-results state for an unmatched search...");
+
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateTo();
+
+        homePage.clickSearchIcon();
+        homePage.enterSearchText("zzqwxnomatch123");
+        homePage.submitSearchExpectingNoResults();
+
+        Assert.assertTrue(homePage.isNoSearchResultsDisplayed(),
+                "No-results heading was not shown for an unmatched search term");
+        Assert.assertTrue(
+                homePage.getNoSearchResultsMessage().toLowerCase().contains("couldn't find any matches"),
+                "Unexpected no-results message: " + homePage.getNoSearchResultsMessage());
+    }
+
     @Test(enabled = true)
     public void verifyAddToCartDirectlyFromSearchPage() {
         log.info("TEST: Verifying Add to Cart from search result...");

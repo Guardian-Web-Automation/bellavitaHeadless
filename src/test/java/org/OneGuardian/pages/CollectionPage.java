@@ -78,6 +78,18 @@ public class CollectionPage extends BasePage {
     @FindBy(xpath = "//button[@class='collection-applied-filter-chip']")
     private WebElement filterApplied;
 
+    // All applied-filter chips (one per selected value) shown on the active-filters bar.
+    @FindBy(css = "button.collection-applied-filter-chip")
+    private List<WebElement> appliedFilterChips;
+
+    // "Clear all" control on the active-filters bar.
+    @FindBy(css = "button.collection-applied-filters-clear")
+    private WebElement clearAllFiltersButton;
+
+    // Product cards currently rendered in the grid (used to compare counts before/after filtering).
+    @FindBy(css = "div.collection-products-grid .collection-product-add-btn")
+    private List<WebElement> gridProductCards;
+
     // "ADD TO CART" button on the first product card of the grid
     @FindBy(xpath = "(//div[@class='collection-products-grid']//button[@class='collection-product-add-btn'])[1]")
     private WebElement firstProductAddToCartButton;
@@ -214,6 +226,20 @@ public class CollectionPage extends BasePage {
         }
     }
 
+    /**
+     * Sets the From/To price inputs in the Price sub-drawer and applies. The Price group must already
+     * be open (clickFilterOption("Price")). Values are typed so the storefront's React state updates.
+     */
+    public void applyPriceFilter(String min, String max) {
+        List<WebElement> priceInputs = driver.findElements(By.cssSelector("input.filter-price-input"));
+        priceInputs.get(0).clear();
+        priceInputs.get(0).sendKeys(min);
+        priceInputs.get(1).clear();
+        priceInputs.get(1).sendKeys(max);
+        log.info("Set price range " + min + "–" + max);
+        clickApplyFilter();
+    }
+
     public void clickApplyFilter() {
         safeClick(applyFilterButton);
         log.info("Clicked Apply filter");
@@ -225,6 +251,37 @@ public class CollectionPage extends BasePage {
     public void addFirstProductToCart() {
         safeClick(firstProductAddToCartButton);
         log.info("Added first product on the grid to cart");
+    }
+
+    /** Number of product cards currently rendered in the grid. */
+    public int getVisibleProductCount() {
+        return gridProductCards.size();
+    }
+
+    /** Number of applied-filter chips shown on the active-filters bar. */
+    public int getAppliedFilterCount() {
+        return appliedFilterChips.size();
+    }
+
+    /** Text of every applied-filter chip, e.g. ["Product type: Perfume", "Product type: Gift Set"]. */
+    public List<String> getAppliedFilterTexts() {
+        List<String> texts = new ArrayList<>();
+        for (WebElement chip : appliedFilterChips) {
+            texts.add(chip.getText().trim());
+        }
+        return texts;
+    }
+
+    /** Clicks "Clear all" on the active-filters bar and waits for the chips to disappear. */
+    public void clearAllFilters() {
+        safeClick(clearAllFiltersButton);
+        try {
+            wait.until(ExpectedConditions.invisibilityOfAllElements(appliedFilterChips));
+        } catch (Exception ignored) {
+            // Chips removed from DOM — treat as cleared.
+        }
+        log.info("Cleared all filters");
+        waitForProductsToLoad();
     }
 
     public boolean isFilterApplied(String filterName) {

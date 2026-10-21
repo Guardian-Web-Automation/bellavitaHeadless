@@ -117,6 +117,25 @@ public class CartPage extends BasePage {
         }
     }
 
+    /**
+     * Polls the header cart badge until it shows a positive count, tolerating the async hydration of
+     * the cart on a freshly loaded page. Returns false if it never becomes positive within the wait.
+     */
+    public boolean waitForCartCountPositive() {
+        try {
+            return wait.until(d -> {
+                try {
+                    String t = cartCountBubble.getText().trim();
+                    return !t.isEmpty() && Integer.parseInt(t) > 0;
+                } catch (Exception inner) {
+                    return false;
+                }
+            });
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public String getQuantity() {
         wait.until(ExpectedConditions.visibilityOf(quantityInput));
         ((JavascriptExecutor) driver).executeScript(
@@ -137,6 +156,16 @@ public class CartPage extends BasePage {
     public void clickRemoveItem() {
        safeClick(removeItemButton);
         log.info("Clicked remove item button");
+    }
+
+    /** True once the open side-cart shows at least one line item (drawer must be opened first). */
+    public boolean isCartItemPresent() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(cartItemRows));
+            return cartItemRows.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean isCartEmpty() {
