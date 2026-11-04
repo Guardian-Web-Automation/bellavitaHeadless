@@ -41,7 +41,10 @@ public class LoginTest extends BaseTest {
                 "OTP entry screen did not appear after submitting the mobile number");
 
         GmailOtpReader otpReader = new GmailOtpReader();
-        String otp = otpReader.waitForOtp(OTP_SENDER_EMAIL, otpSearchStartEpochSeconds, Duration.ofSeconds(60));
+        // GoKwik forwards the login OTP by email, and delivery to Gmail can lag well past a minute on
+        // the CI runner (the daily job also shares one test number, so sends are occasionally rate
+        // limited). 60s was too tight and failed intermittently; 120s gives the mail time to land.
+        String otp = otpReader.waitForOtp(OTP_SENDER_EMAIL, otpSearchStartEpochSeconds, Duration.ofSeconds(120));
         log.info("Fetched login OTP from email");
 
         loginPage.submitOtp(otp);
